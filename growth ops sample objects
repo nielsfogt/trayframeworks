@@ -1,0 +1,93 @@
+[
+		{
+			"attribution": {
+				"campaign_id": null,
+				"ip": null,
+				"utm_content": null,
+				"gclid": null,
+				"ga_id": null,
+				"utm_term": null,
+				"utm_source": null,
+				"utm_medium": null,
+				"utm_campaign": null,
+				"status": null,
+				"clearbit_form_status": null,
+				"formId": null,
+				"intercomId": null,
+				"anonymousId": null,
+				"referrer": null,
+				"offer_type": null,
+				"munchkin_id": null,
+				"gclid_intercom_ids": null
+			}
+		},
+		{
+			"company": {
+				"zoominfo_company_phone": null,
+				"industry": null,
+				"domain": null,
+				"employees": null,
+				"name": null,
+				"industry_score": null,
+				"type": null,
+				"country": null,
+				"state": null,
+				"zip_code": null,
+				"street": null,
+				"company_linkedin": null,
+				"city": null,
+				"clearbit_company_phoneNumbers": null,
+				"leadgenius_company_phone": null,
+				"sales_segment": null,
+				"status": null,
+				"company_phone": null
+			}
+		},
+		{
+			"person": {
+				"id": null,
+				"domain": null,
+				"country": null,
+				"last_name": null,
+				"first_name": null,
+				"title": null,
+				"seniority_hierarchy": null,
+				"mql_date_2": null,
+				"mql_date": null,
+				"type": null,
+				"department_group": null,
+				"role": null,
+				"linkedin": null,
+				"all_phone_numbers": null,
+				"clearbit_person_phone": null,
+				"zoominfo_person_phone": null,
+				"leadgenius_person_phone": null,
+				"sent_to_manual_enrichment_date": null,
+				"lead_date": null,
+				"outreach_id": null,
+				"form_phone": null,
+				"email": null,
+				"lead_status": null,
+				"name": null,
+				"intercom_role": null,
+				"intercom_id": null,
+				"scores": null
+			}
+		},
+		{
+			"owner": {
+				"role_id": null,
+				"id": null,
+				"user_team": null,
+				"email": null,
+				"last_name": null,
+				"first_name": null,
+				"name": null,
+				"active": null,
+				"profile_id": null,
+				"booking_link": null,
+				"intercom_id": null,
+				"outreach_id": null
+			}
+		}
+	]
