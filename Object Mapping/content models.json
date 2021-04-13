@@ -1,0 +1,222 @@
+[
+    {
+        "id":"sourceProperty",
+        "name": "Property",
+        "description": "An individual property inside a system object.",
+        "displayField": "friendlyName",
+        "fields": [
+            {
+                "id": "friendlyName",
+                "name": "Friendly Name",
+                "type": "Symbol",
+                "localized": false,
+                "required": true,
+                "validations": [ 
+                  {
+                    "unique": true
+                  }
+                ],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "systemName",
+                "name": "System Name",
+                "type": "Symbol",
+                "localized": false,
+                "required": true,
+                "validations": [],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "character_limit",
+                "name": "Character Limit ",
+                "type": "Integer",
+                "localized": false,
+                "required": false,
+                "validations": [],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "updateExcludedSystems",
+                "name": "Excluded update systems",
+                "type": "Array",
+                "localized": false,
+                "required": false,
+                "validations": [],
+                "disabled": false,
+                "omitted": false,
+                "items": {
+                    "type": "Link",
+                    "validations": [
+                        {
+                            "linkContentType": [
+                            "sourceSystem"
+                            ]
+                        }
+                    ],
+                    "linkType": "Entry"
+                }
+            },
+            {
+                "id": "canonicalPropertyMapping",
+                "name": "Canonical Property Mapping",
+                "type": "Link",
+                "localized": false,
+                "required": false,
+                "validations": [
+                    {
+                        "linkContentType": [
+                            "sourceProperty"
+                        ]
+                    }
+                ],
+                "disabled": false,
+                "omitted": false,
+                "linkType": "Entry"
+            }
+        ]
+    },
+    {
+        "id":"sourceObject",
+        "name": "Source Object",
+        "description": "An object for a given source system.",
+        "displayField": "friendlyName",
+        "fields": [
+            {
+                "id": "friendlyName",
+                "name": "Friendly Name",
+                "type": "Symbol",
+                "localized": false,
+                "required": false,
+                "validations": [ 
+                  {
+                    "unique": true
+                  }
+                ],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "systemName",
+                "name": "System Name",
+                "type": "Symbol",
+                "localized": false,
+                "required": false,
+                "validations": [],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "properties",
+                "name": "Properties",
+                "type": "Array",
+                "localized": false,
+                "required": false,
+                "validations": [],
+                "disabled": false,
+                "omitted": false,
+                "items": {
+                    "type": "Link",
+                    "validations": [
+                        {
+                        "linkContentType": [
+                            "sourceProperty"
+                        ]
+                        }
+                    ],
+                    "linkType": "Entry"
+                }
+            }
+        ]
+    },
+    {    
+        "id": "sourceSystem",
+        "name": "Source System",
+        "description": "A given system to map object properties from. Ex: Salesforce",
+        "displayField": "friendlyName",
+        "fields": [
+						{
+              "id": "friendlyName",
+              "name": "Friendly Name",
+              "type": "Symbol",
+              "localized": false,
+              "required": true,
+              "validations": [
+                {
+                  "unique": true
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+          	},
+          	{
+              "id": "canonicalSystem",
+              "name": "Canonical system?",
+              "type": "Symbol",
+              "localized": false,
+              "required": false,
+              "validations": [
+                {
+                  "unique": true
+                },
+                {
+                  "in": [
+                    "TRUE"
+                  ],
+                  "message": "Only one entry can have this set to true, simply leave it empty for all other systems."
+                }
+              ],
+              "disabled": false,
+              "omitted": false
+            },
+            {
+                "id": "systemName",
+                "name": "System Name",
+                "type": "Symbol",
+                "localized": false,
+                "required": true,
+                "validations": [
+                    {
+                    "unique": true
+                    }
+                ],
+                "disabled": false,
+                "omitted": false
+            },
+            {
+                "id": "objects",
+                "name": "Objects",
+                "type": "Array",
+                "localized": false,
+                "required": false,
+                "validations": [],
+                "disabled": false,
+                "omitted": false,
+                "items": {
+                    "type": "Link",
+                    "validations": [
+                        {
+                        "linkContentType": [
+                            "sourceObject"
+                        ]
+                        }
+                    ],
+                    "linkType": "Entry"
+                }
+            },
+            {
+                  "id": "updatableSystem",
+                  "name": "Updatable System? ",
+                  "type": "Boolean",
+                  "localized": false,
+                  "required": false,
+                  "validations": [],
+                  "disabled": false,
+                  "omitted": false
+            }
+        ]
+    }
+]
