@@ -1,0 +1,136 @@
+ {
+  "export_type": "workflow",
+  "projects": [],
+  "tray_export_version": 3,
+  "workflows": [
+    {
+      "id": "d24d553f-2484-40de-89de-52cf6a5d643e",
+      "created": "2021-04-10T16:45:10.469Z",
+      "workspace_id": "12c61eef-8d88-4281-921d-3b7db6b01106",
+      "creator": "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+      "version": {
+        "id": "a3d2d7c0-d526-4afa-aaf7-ab9f0720b8ec",
+        "created": "2021-04-13T01:40:55.507Z"
+      },
+      "title": "[Property Mapping] CMS Setup - Create Source System, Source Object, and Property entries from example object",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {},
+        "output_schema": {}
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "script-5",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "terminate-1",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "call-workflow-2",
+          "type": "normal",
+          "content": {}
+        }
+      ],
+      "steps": {
+        "trigger": {
+          "title": "Manual Trigger",
+          "connector": {
+            "name": "noop",
+            "version": "1.0"
+          },
+          "operation": "trigger",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "terminate-1": {
+          "title": "Remove after test",
+          "connector": {
+            "name": "terminate",
+            "version": "1.0"
+          },
+          "operation": "terminate_run",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {}
+        },
+        "script-5": {
+          "title": "Put example object here",
+          "description": "Add your sample object to the script and run a test to make sure you don't have a syntax error in logs",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": []
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n\treturn {\n\t\t\t\t// add object properties here\n\t\t\t}\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "call-workflow-2": {
+          "title": "FIX ME: Create source system/object/prop",
+          "description": "Each time you setup a new system and object, you need to update the system and object names!",
+          "connector": {
+            "name": "call-workflow",
+            "version": "2.0"
+          },
+          "operation": "fire_and_wait_for_response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "workflow_id": {
+              "type": "string",
+              "value": "8ee960e6-026a-48b6-8fd6-4305c7b6a107"
+            },
+            "trigger_input": {
+              "value": {
+                "system_create": {
+                  "type": "boolean",
+                  "value": "true"
+                },
+                "object_create": {
+                  "type": "boolean",
+                  "value": "true"
+                },
+                "properties": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-5.result"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      },
+      "dependencies": [
+        {
+          "id": "8ee960e6-026a-48b6-8fd6-4305c7b6a107",
+          "name": "[Property Mapping] CMS Setup - Add a source system object & properties in Contentful"
+        }
+      ]
+    }
+  ]
+}

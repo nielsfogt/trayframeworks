@@ -1,0 +1,41 @@
+select distinct
+      mfs.id as intake_event_id
+      , mfs.received_at as intake_event_ts
+      , mfs.form_munchkin_id
+      , mfs.form_form_id
+      --       , mfs.context_page_url
+      , mfs.form_referrer
+      , mfs.referrer
+      , mfs.form_utm_content
+      , mfs.form_utm_medium
+      , mfs.form_utm_source
+      , mfs.form_utm_campaign
+      , mfs.form_utm_term
+      , mfs.form_anonymous_id as anonymous_id
+      , mfs.form_email as email
+      , mfs.form_phone
+      , mfs.form_company
+      , mfs.form_firstname
+      , mfs.form_title
+      , mfs.form_lastname
+      --       , mfs.user_id
+      , mfs.form_offer_type as offer_type
+      --       , mfs.data_campaign_id
+      --       , mfs.data_anonymous_id
+      , mfs.form_ga_id as ga_id
+      --       , mfs.data_referrer
+      , mfs.form_gclid
+      , mfs.form_domain
+      , mfs.form_num_employees
+      , mfs.form_contact_request
+      , mfs.form_message
+      , mfs.form_intercom_id
+      --       , mfs.data_technical
+      --       , mfs.data_services
+      --       , mfs.data_solution
+      , mfs.form_industry as industry
+      , mfs.form_country
+    from
+      growth_source_prod.trial_request mfs
+    where
+      [received_at=daterange]
