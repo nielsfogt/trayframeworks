@@ -1,0 +1,1425 @@
+ {
+  "export_type": "workflow",
+  "projects": [],
+  "tray_export_version": 3,
+  "workflows": [
+    {
+      "id": "efe90b96-ec18-4bf4-bd2a-ae8b39eef704",
+      "created": "2021-03-01T05:31:34.029Z",
+      "workspace_id": "12c61eef-8d88-4281-921d-3b7db6b01106",
+      "creator": "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+      "version": {
+        "id": "258b02ca-42f2-4518-b895-ede90a78c563",
+        "created": "2021-04-13T00:49:45.237Z"
+      },
+      "title": "[Contentful] Entries - Patch and publish entry",
+      "enabled": true,
+      "tags": [],
+      "settings": {
+        "config": {},
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "entry": {
+              "title": "Entry",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "title": "ID"
+                },
+                "patches": {
+                  "title": "Patches",
+                  "type": "array",
+                  "items": {
+                    "title": "Patch",
+                    "type": "object",
+                    "properties": {
+                      "op": {
+                        "type": "string",
+                        "title": "Operation",
+                        "enum": [
+                          {
+                            "text": "Add/replace",
+                            "value": "add"
+                          },
+                          {
+                            "text": "Remove",
+                            "value": "remove"
+                          }
+                        ]
+                      },
+                      "path": {
+                        "title": "Path",
+                        "type": "string",
+                        "description": "Use slash notation"
+                      },
+                      "value": {
+                        "title": "Value",
+                        "oneOf": [
+                          {
+                            "type": "string",
+                            "title": "String"
+                          },
+                          {
+                            "title": "Boolean",
+                            "type": "boolean",
+                            "default": false
+                          },
+                          {
+                            "title": "Date",
+                            "type": [
+                              "string",
+                              "integer"
+                            ],
+                            "format": "datetime",
+                            "date_mask": "YYYY-MM-DD"
+                          },
+                          {
+                            "title": "Number",
+                            "type": "number"
+                          },
+                          {
+                            "title": "Entry Reference",
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "title": "sys",
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "title": "type",
+                                    "default": "Link"
+                                  },
+                                  "linkType": {
+                                    "title": "linkType",
+                                    "type": "string",
+                                    "default": "Entry"
+                                  },
+                                  "id": {
+                                    "title": "id",
+                                    "type": "string"
+                                  }
+                                },
+                                "additionalProperties": false,
+                                "required": [],
+                                "advanced": []
+                              }
+                            },
+                            "additionalProperties": false,
+                            "required": [],
+                            "advanced": []
+                          }
+                        ]
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [],
+                    "advanced": []
+                  },
+                  "additionalItems": true
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id"
+              ],
+              "advanced": []
+            }
+          },
+          "additionalProperties": false,
+          "required": [],
+          "advanced": []
+        },
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "title": "Message",
+              "type": "string"
+            },
+            "status_code": {
+              "title": "Status Code",
+              "type": "integer"
+            },
+            "success": {
+              "title": "Success Details",
+              "oneOf": [
+                {
+                  "title": "Object",
+                  "type": "object",
+                  "properties": {
+                    "entry": {
+                      "title": "Entry",
+                      "type": "object",
+                      "properties": {},
+                      "additionalProperties": false,
+                      "required": [],
+                      "advanced": []
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [],
+                  "advanced": []
+                }
+              ]
+            },
+            "error": {
+              "title": "Error Detials",
+              "oneOf": [
+                {
+                  "title": "Object",
+                  "type": "object",
+                  "properties": {
+                    "api_message": {
+                      "type": "string",
+                      "title": "API Message"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [],
+                  "advanced": []
+                },
+                {
+                  "title": "Array",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "title": "Item"
+                  },
+                  "additionalItems": true
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "status_code",
+            "message"
+          ],
+          "advanced": []
+        }
+      },
+      "steps_structure": [
+        {
+          "name": "trigger",
+          "type": "normal",
+          "content": {}
+        },
+        {
+          "name": "http-client-1",
+          "type": "branch",
+          "content": {
+            "error": [
+              {
+                "name": "callable-workflow-response-3",
+                "type": "normal",
+                "content": {}
+              }
+            ],
+            "success": [
+              {
+                "name": "script-1",
+                "type": "normal",
+                "content": {}
+              },
+              {
+                "name": "http-client-4",
+                "type": "branch",
+                "content": {
+                  "error": [
+                    {
+                      "name": "callable-workflow-response-2",
+                      "type": "normal",
+                      "content": {}
+                    }
+                  ],
+                  "success": [
+                    {
+                      "name": "http-client-2",
+                      "type": "branch",
+                      "content": {
+                        "error": [
+                          {
+                            "name": "callable-workflow-response-5",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ],
+                        "success": [
+                          {
+                            "name": "callable-workflow-response-4",
+                            "type": "normal",
+                            "content": {}
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "steps": {
+        "script-1": {
+          "title": "Choose add/replace operations",
+          "description": "This ensures correct patch operation is used.",
+          "connector": {
+            "name": "script",
+            "version": "3.0"
+          },
+          "operation": "execute",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "variables": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "fields"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.http-client-1.response.body.fields"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "name": {
+                      "type": "string",
+                      "value": "patches"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.trigger.data.entry.patches"
+                    }
+                  }
+                }
+              ]
+            },
+            "script": {
+              "type": "string",
+              "value": "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n\t var patches = input.patches.map((patch,i)=>{\n\t// Create dot path after fields to use to check if the update has an existing field.\n  var dot_path = patch.path.replace(/\\//g,'.').replace(/\\.fields\\./g,'')\n  // Use the dot path to search fields object for this patch.\n  var found = _.get(input.fields,dot_path)\n  // If we didn't find the item to patch and we've set it to replace, we should \"add\" instead.\n  if(!found && patch.op == \"replace\"){\n    patch.op = \"add\"\n\t// Otherwise, if we found it and are trying to \"add\", \"replace\" it instead.\n  } else if(found && patch.op == \"add\") {\n    patch.op = \"replace\"\n  }\n    return patch\n  })\n\treturn patches;\n};"
+            },
+            "file_output": {
+              "type": "boolean",
+              "value": false
+            }
+          }
+        },
+        "http-client-4": {
+          "title": "Patch entry",
+          "connector": {
+            "name": "http-client",
+            "version": "5.1"
+          },
+          "operation": "patch_request",
+          "output_schema": {},
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+            "title": "Property Mapping Demo Instance",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+            },
+            "service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+            "auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+            "scopes": []
+          },
+          "properties": {
+            "body": {
+              "type": "object",
+              "value": {
+                "raw": {
+                  "type": "jsonpath",
+                  "value": "$.steps.script-1.result"
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Authorization"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Bearer {$.auth.auth_token}"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "X-Contentful-Version"
+                    },
+                    "value": {
+                      "type": "jsonpath",
+                      "value": "$.steps.http-client-1.response.body.sys.version"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Content-Type"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "application/json-patch+json"
+                    }
+                  }
+                }
+              ]
+            },
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "url": {
+              "type": "string",
+              "value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}"
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "http-client-1": {
+          "title": "Get entry",
+          "connector": {
+            "name": "http-client",
+            "version": "5.1"
+          },
+          "operation": "get_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-iinfo": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-second-remaining": {
+                        "type": "string"
+                      },
+                      "access-control-allow-origin": {
+                        "type": "string"
+                      },
+                      "accept-patch": {
+                        "type": "string"
+                      },
+                      "server": {
+                        "type": "string"
+                      },
+                      "contentful-upstream": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-second-limit": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-reset": {
+                        "type": "string"
+                      },
+                      "access-control-allow-headers": {
+                        "type": "string"
+                      },
+                      "cf-space-id": {
+                        "type": "string"
+                      },
+                      "x-contentful-request-id": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "contentful-api": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-hour-remaining": {
+                        "type": "string"
+                      },
+                      "x-content-type-options": {
+                        "type": "string"
+                      },
+                      "etag": {
+                        "type": "string"
+                      },
+                      "access-control-allow-methods": {
+                        "type": "string"
+                      },
+                      "x-contentful-route": {
+                        "type": "string"
+                      },
+                      "access-control-expose-headers": {
+                        "type": "string"
+                      },
+                      "x-cdn": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-hour-limit": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "access-control-max-age": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "cf-environment-id": {
+                        "type": "string"
+                      },
+                      "cf-environment-uuid": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "sys": {
+                        "type": "object",
+                        "properties": {
+                          "publishedAt": {
+                            "type": "string"
+                          },
+                          "publishedBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "space": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "publishedVersion": {
+                            "type": "number"
+                          },
+                          "publishedCounter": {
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "firstPublishedAt": {
+                            "type": "string"
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "environment": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "contentType": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "version": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "friendlyName": {
+                            "type": "object",
+                            "properties": {
+                              "en-US": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "systemName": {
+                            "type": "object",
+                            "properties": {
+                              "en-US": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+            "title": "Property Mapping Demo Instance",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+            },
+            "service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+            "auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+            "scopes": []
+          },
+          "properties": {
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "type": "object",
+                  "value": {
+                    "key": {
+                      "type": "string",
+                      "value": "Authorization"
+                    },
+                    "value": {
+                      "type": "string",
+                      "value": "Bearer {$.auth.auth_token}"
+                    }
+                  }
+                }
+              ]
+            },
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "url": {
+              "type": "string",
+              "value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}"
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "callable-workflow-response-5": {
+          "title": "Error: Publish failed",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "status_code": {
+                  "type": "jsonpath",
+                  "value": "$.errors.http-client-2.status_code"
+                },
+                "message": {
+                  "type": "string",
+                  "value": "Entry publishing failed. Check logs."
+                },
+                "error": {
+                  "type": "object",
+                  "value": {
+                    "api_message": {
+                      "type": "jsonpath",
+                      "value": "$.errors.http-client-2.message"
+                    }
+                  }
+                },
+                "success": {
+                  "type": "object",
+                  "value": {
+                    "entry": {
+                      "type": "jsonpath",
+                      "value": "$.steps.http-client-4.response.body"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "callable-workflow-response-2": {
+          "title": "Error: Update failed",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "status_code": {
+                  "type": "jsonpath",
+                  "value": "$.errors.http-client-4.status_code"
+                },
+                "message": {
+                  "type": "string",
+                  "value": "Entry update failed. Most likely due to malformed request of the entry's fields object."
+                },
+                "error": {
+                  "type": "object",
+                  "value": {
+                    "api_message": {
+                      "type": "jsonpath",
+                      "value": "$.errors.http-client-4.message"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "callable-workflow-response-4": {
+          "title": "Success",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "value": "Entry created & published successfully.",
+                  "type": "string"
+                },
+                "status_code": {
+                  "type": "jsonpath",
+                  "value": "$.steps.http-client-2.response.status_code"
+                },
+                "success": {
+                  "type": "object",
+                  "value": {
+                    "entry": {
+                      "type": "jsonpath",
+                      "value": "$.steps.http-client-2.response.body"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "http-client-2": {
+          "title": "Publish entry",
+          "connector": {
+            "name": "http-client",
+            "version": "5.1"
+          },
+          "operation": "put_request",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "response": {
+                "type": "object",
+                "properties": {
+                  "status_code": {
+                    "type": "number"
+                  },
+                  "headers": {
+                    "type": "object",
+                    "properties": {
+                      "x-iinfo": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-second-remaining": {
+                        "type": "string"
+                      },
+                      "access-control-allow-origin": {
+                        "type": "string"
+                      },
+                      "accept-patch": {
+                        "type": "string"
+                      },
+                      "server": {
+                        "type": "string"
+                      },
+                      "contentful-upstream": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-second-limit": {
+                        "type": "string"
+                      },
+                      "strict-transport-security": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-reset": {
+                        "type": "string"
+                      },
+                      "access-control-allow-headers": {
+                        "type": "string"
+                      },
+                      "cf-space-id": {
+                        "type": "string"
+                      },
+                      "x-contentful-request-id": {
+                        "type": "string"
+                      },
+                      "content-type": {
+                        "type": "string"
+                      },
+                      "date": {
+                        "type": "string"
+                      },
+                      "set-cookie": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "contentful-api": {
+                        "type": "string"
+                      },
+                      "cache-control": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-hour-remaining": {
+                        "type": "string"
+                      },
+                      "x-content-type-options": {
+                        "type": "string"
+                      },
+                      "etag": {
+                        "type": "string"
+                      },
+                      "access-control-allow-methods": {
+                        "type": "string"
+                      },
+                      "x-contentful-route": {
+                        "type": "string"
+                      },
+                      "access-control-expose-headers": {
+                        "type": "string"
+                      },
+                      "x-cdn": {
+                        "type": "string"
+                      },
+                      "x-contentful-ratelimit-hour-limit": {
+                        "type": "string"
+                      },
+                      "content-length": {
+                        "type": "string"
+                      },
+                      "access-control-max-age": {
+                        "type": "string"
+                      },
+                      "connection": {
+                        "type": "string"
+                      },
+                      "cf-environment-id": {
+                        "type": "string"
+                      },
+                      "cf-environment-uuid": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "sys": {
+                        "type": "object",
+                        "properties": {
+                          "publishedAt": {
+                            "type": "string"
+                          },
+                          "publishedBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "space": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "publishedVersion": {
+                            "type": "number"
+                          },
+                          "publishedCounter": {
+                            "type": "number"
+                          },
+                          "updatedAt": {
+                            "type": "string"
+                          },
+                          "firstPublishedAt": {
+                            "type": "string"
+                          },
+                          "updatedBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "environment": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "contentType": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "version": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "createdAt": {
+                            "type": "string"
+                          },
+                          "createdBy": {
+                            "type": "object",
+                            "properties": {
+                              "sys": {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "linkType": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "friendlyName": {
+                            "type": "object",
+                            "properties": {
+                              "en-US": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "systemName": {
+                            "type": "object",
+                            "properties": {
+                              "en-US": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error_handling": {
+            "strategy": "manual"
+          },
+          "authentication": {
+            "group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+            "title": "Property Mapping Demo Instance",
+            "service_icon": {
+              "icon_type": "url",
+              "value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+            },
+            "service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+            "auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+            "scopes": []
+          },
+          "properties": {
+            "url": {
+              "value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}/published",
+              "type": "string"
+            },
+            "auth": {
+              "type": "object",
+              "value": {
+                "none": {
+                  "type": "null",
+                  "value": null
+                }
+              }
+            },
+            "headers": {
+              "type": "array",
+              "value": [
+                {
+                  "value": {
+                    "key": {
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    "value": {
+                      "value": "Bearer {$.auth.auth_token}",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                {
+                  "value": {
+                    "key": {
+                      "value": "X-Contentful-Version",
+                      "type": "string"
+                    },
+                    "value": {
+                      "value": "$.steps.http-client-4.response.body.sys.version",
+                      "type": "jsonpath"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            },
+            "follow_redirect": {
+              "type": "boolean",
+              "value": false
+            },
+            "follow_keep_method": {
+              "type": "boolean",
+              "value": false
+            },
+            "reject_unauthorized": {
+              "type": "boolean",
+              "value": true
+            },
+            "parse_response": {
+              "type": "string",
+              "value": "true"
+            },
+            "status_code": {
+              "type": "object",
+              "value": {
+                "range": {
+                  "type": "object",
+                  "value": {
+                    "from": {
+                      "type": "integer",
+                      "value": 200
+                    },
+                    "to": {
+                      "type": "integer",
+                      "value": 299
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "callable-workflow-response-3": {
+          "title": "Entry doesn't exist",
+          "connector": {
+            "name": "callable-workflow-response",
+            "version": "1.0"
+          },
+          "operation": "response",
+          "output_schema": {},
+          "error_handling": {},
+          "properties": {
+            "response": {
+              "value": {
+                "message": {
+                  "type": "string",
+                  "value": "Could not find an entry under the ID of: \"{$.steps.trigger.data.entry}\"."
+                },
+                "status_code": {
+                  "type": "number",
+                  "value": 404
+                },
+                "error": {
+                  "type": "object",
+                  "value": {
+                    "api_message": {
+                      "type": "jsonpath",
+                      "value": "$.errors.http-client-1.response.message"
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        "trigger": {
+          "title": "Callable Trigger",
+          "connector": {
+            "name": "callable-trigger",
+            "version": "2.0"
+          },
+          "operation": "trigger_and_respond",
+          "output_schema": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "type": "object",
+            "properties": {
+              "#calling_execution": {
+                "type": "string"
+              },
+              "#calling_workflow": {
+                "type": "string"
+              },
+              "data": {
+                "type": "object",
+                "properties": {
+                  "entry": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "fields": {
+                        "type": "object",
+                        "properties": {
+                          "objects": {
+                            "type": "object",
+                            "properties": {
+                              "en-US": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "sys": {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string"
+                                        },
+                                        "linkType": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "contentType": {
+                    "type": "null"
+                  }
+                }
+              },
+              "#calling_execution_log_url": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {},
+          "properties": {}
+        }
+      },
+      "dependencies": []
+    }
+  ]
+}
