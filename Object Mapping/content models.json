@@ -63,7 +63,7 @@
             {
                 "id": "canonicalPropertyMapping",
                 "name": "Canonical Property Mapping",
-                "type": "Link",
+                "type": "Array",
                 "localized": false,
                 "required": false,
                 "validations": [
@@ -75,7 +75,7 @@
                 ],
                 "disabled": false,
                 "omitted": false,
-                "linkType": "Array"
+                "linkType": "Entry"
             }
         ]
     },
