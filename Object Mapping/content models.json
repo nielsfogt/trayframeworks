@@ -66,6 +66,9 @@
                 "type": "Array",
                 "localized": false,
                 "required": false,
+    		"validations": [],
+                "disabled": false,
+                "omitted": false,
 		"items": {
 			"type": "Link",
 			"validations": [
@@ -74,11 +77,9 @@
 				    "sourceProperty"
 				]
 			     }
-			]
+			],
+			"linkType": "Entry"
 		},
-                "disabled": false,
-                "omitted": false,
-                "linkType": "Entry"
             }
         ]
     },
