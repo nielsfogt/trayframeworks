@@ -66,13 +66,16 @@
                 "type": "Array",
                 "localized": false,
                 "required": false,
-                "validations": [
-                    {
-                        "linkContentType": [
-                            "sourceProperty"
-                        ]
-                    }
-                ],
+		"items": {
+			"type": "Link",
+			"validations": [
+			     {
+				"linkContentType": [
+				    "sourceProperty"
+				]
+			     }
+			]
+		},
                 "disabled": false,
                 "omitted": false,
                 "linkType": "Entry"
