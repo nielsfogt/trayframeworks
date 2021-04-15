@@ -80,7 +80,24 @@
 			],
 			"linkType": "Entry"
 		}
-            }
+            },
+    {
+      "id": "dataType",
+      "name": "Data Type",
+      "type": "Symbol",
+      "localized": false,
+      "required": false,
+      "validations": [
+        {
+          "in": [
+            "Integer",
+            "String"
+          ]
+        }
+      ],
+      "disabled": false,
+      "omitted": false
+    }
         ]
     },
     {
