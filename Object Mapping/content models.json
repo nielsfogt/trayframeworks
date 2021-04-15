@@ -7,7 +7,7 @@
         "fields": [
             {
                 "id": "friendlyName",
-                "name": "Friendly Namer",
+                "name": "Friendly Name",
                 "type": "Symbol",
                 "localized": false,
                 "required": true,
