@@ -1,0 +1,6 @@
+Content Model Source
+Note that removing or changing the object structure of any field in a previous version of the model will cause failures in "[Property Mapping] CMS Setup - Create data models in Contentful".
+
+Doing this requires that you first disable the field in the response, and finally delete it. I believe if you wish to then update an existing field, we'll need to create some logic to recreate it in its new form.
+
+Generally speaking, I don't think this would be a very common experience. I think it would be more common to want to add net new fields, which the workflow supports today.
