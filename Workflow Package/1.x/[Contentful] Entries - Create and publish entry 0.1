@@ -1,0 +1,1544 @@
+{
+	"result": {
+		"export_type": "workflow",
+		"projects": [],
+		"tray_export_version": 3,
+		"workflows": [
+			{
+				"id": "7b5136b2-6970-4ea7-bda5-eb22917b64c4",
+				"created": "2021-02-28T19:26:28.299Z",
+				"workspace_id": "12c61eef-8d88-4281-921d-3b7db6b01106",
+				"creator": "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+				"version": {
+					"id": "704b6b99-5833-4084-afa7-cd5298dd5283",
+					"created": "2021-04-13T00:37:51.469Z"
+				},
+				"title": "[Contentful] Entries - Create and publish entry 1.0",
+				"enabled": true,
+				"tags": [],
+				"settings": {
+					"config": {},
+					"input_schema": {
+						"type": "object",
+						"properties": {
+							"fields": {
+								"title": "Fields",
+								"description": "The entry JSON object mapped to entry fields",
+								"type": "object",
+								"properties": {},
+								"additionalProperties": false,
+								"required": [],
+								"advanced": []
+							},
+							"contentType": {
+								"title": "Content Type",
+								"type": "string",
+								"description": "Must match an available content type in the space. Use the system ID of the content type."
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"fields",
+							"contentType"
+						],
+						"advanced": []
+					},
+					"output_schema": {
+						"type": "object",
+						"properties": {
+							"message": {
+								"title": "Message",
+								"type": "string"
+							},
+							"status_code": {
+								"title": "Status Code",
+								"type": "integer"
+							},
+							"success": {
+								"title": "Success Details",
+								"oneOf": [
+									{
+										"title": "Object",
+										"type": "object",
+										"properties": {
+											"entry": {
+												"title": "Entry",
+												"type": "object",
+												"properties": {},
+												"additionalProperties": false,
+												"required": [],
+												"advanced": []
+											}
+										},
+										"additionalProperties": false,
+										"required": [],
+										"advanced": []
+									}
+								]
+							},
+							"error": {
+								"title": "Error Detials",
+								"oneOf": [
+									{
+										"title": "Object",
+										"type": "object",
+										"properties": {
+											"api_message": {
+												"type": "string",
+												"title": "API Message"
+											}
+										},
+										"additionalProperties": false,
+										"required": [],
+										"advanced": []
+									},
+									{
+										"title": "Array",
+										"type": "array",
+										"items": {
+											"type": "string",
+											"title": "Item"
+										},
+										"additionalItems": true
+									}
+								]
+							}
+						},
+						"additionalProperties": false,
+						"required": [
+							"status_code",
+							"message"
+						],
+						"advanced": []
+					}
+				},
+				"steps_structure": [
+					{
+						"name": "trigger",
+						"type": "normal",
+						"content": {}
+					},
+					{
+						"name": "http-client-3",
+						"type": "normal",
+						"content": {}
+					},
+					{
+						"name": "boolean-condition-2",
+						"type": "branch",
+						"content": {
+							"true": [
+								{
+									"name": "random-helpers-1",
+									"type": "normal",
+									"content": {}
+								},
+								{
+									"name": "http-client-4",
+									"type": "branch",
+									"content": {
+										"error": [
+											{
+												"name": "callable-workflow-response-2",
+												"type": "normal",
+												"content": {}
+											}
+										],
+										"success": [
+											{
+												"name": "http-client-2",
+												"type": "branch",
+												"content": {
+													"error": [
+														{
+															"name": "callable-workflow-response-5",
+															"type": "normal",
+															"content": {}
+														}
+													],
+													"success": [
+														{
+															"name": "callable-workflow-response-4",
+															"type": "normal",
+															"content": {}
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							],
+							"false": [
+								{
+									"name": "callable-workflow-response-1",
+									"type": "normal",
+									"content": {}
+								}
+							]
+						}
+					}
+				],
+				"steps": {
+					"http-client-3": {
+						"title": "Search for content type",
+						"connector": {
+							"name": "http-client",
+							"version": "5.1"
+						},
+						"operation": "get_request",
+						"output_schema": {
+							"$schema": "http://json-schema.org/draft-04/schema#",
+							"type": "object",
+							"properties": {
+								"response": {
+									"type": "object",
+									"properties": {
+										"status_code": {
+											"type": "number"
+										},
+										"headers": {
+											"type": "object",
+											"properties": {
+												"x-iinfo": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-remaining": {
+													"type": "string"
+												},
+												"access-control-allow-origin": {
+													"type": "string"
+												},
+												"server": {
+													"type": "string"
+												},
+												"contentful-upstream": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-limit": {
+													"type": "string"
+												},
+												"strict-transport-security": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-reset": {
+													"type": "string"
+												},
+												"access-control-allow-headers": {
+													"type": "string"
+												},
+												"cf-space-id": {
+													"type": "string"
+												},
+												"x-contentful-request-id": {
+													"type": "string"
+												},
+												"content-type": {
+													"type": "string"
+												},
+												"date": {
+													"type": "string"
+												},
+												"set-cookie": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"contentful-api": {
+													"type": "string"
+												},
+												"cache-control": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-remaining": {
+													"type": "string"
+												},
+												"x-content-type-options": {
+													"type": "string"
+												},
+												"etag": {
+													"type": "string"
+												},
+												"access-control-allow-methods": {
+													"type": "string"
+												},
+												"x-contentful-route": {
+													"type": "string"
+												},
+												"access-control-expose-headers": {
+													"type": "string"
+												},
+												"x-cdn": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-limit": {
+													"type": "string"
+												},
+												"content-length": {
+													"type": "string"
+												},
+												"access-control-max-age": {
+													"type": "string"
+												},
+												"connection": {
+													"type": "string"
+												},
+												"cf-environment-id": {
+													"type": "string"
+												},
+												"cf-environment-uuid": {
+													"type": "string"
+												}
+											}
+										},
+										"body": {
+											"type": "object",
+											"properties": {
+												"sys": {
+													"type": "object",
+													"properties": {
+														"type": {
+															"type": "string"
+														}
+													}
+												},
+												"total": {
+													"type": "number"
+												},
+												"skip": {
+													"type": "number"
+												},
+												"limit": {
+													"type": "number"
+												},
+												"items": {
+													"type": "array",
+													"items": {}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"error_handling": {},
+						"authentication": {
+							"group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+							"title": "Property Mapping Demo Instance",
+							"service_icon": {
+								"icon_type": "url",
+								"value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+							},
+							"service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+							"auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+							"scopes": []
+						},
+						"properties": {
+							"queries": {
+								"type": "array",
+								"value": [
+									{
+										"type": "object",
+										"value": {
+											"key": {
+												"type": "string",
+												"value": "sys.id"
+											},
+											"value": {
+												"type": "jsonpath",
+												"value": "$.steps.trigger.data.contentType"
+											}
+										}
+									}
+								]
+							},
+							"headers": {
+								"type": "array",
+								"value": [
+									{
+										"type": "object",
+										"value": {
+											"key": {
+												"type": "string",
+												"value": "Authorization"
+											},
+											"value": {
+												"type": "string",
+												"value": "Bearer {$.auth.auth_token}"
+											}
+										}
+									}
+								]
+							},
+							"auth": {
+								"type": "object",
+								"value": {
+									"none": {
+										"type": "null",
+										"value": null
+									}
+								}
+							},
+							"follow_redirect": {
+								"type": "boolean",
+								"value": false
+							},
+							"parse_response": {
+								"type": "string",
+								"value": "true"
+							},
+							"follow_keep_method": {
+								"type": "boolean",
+								"value": false
+							},
+							"url": {
+								"type": "string",
+								"value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types"
+							},
+							"reject_unauthorized": {
+								"type": "boolean",
+								"value": true
+							},
+							"status_code": {
+								"type": "object",
+								"value": {
+									"range": {
+										"type": "object",
+										"value": {
+											"from": {
+												"type": "integer",
+												"value": 200
+											},
+											"to": {
+												"type": "integer",
+												"value": 299
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"boolean-condition-2": {
+						"title": "Found content type?",
+						"connector": {
+							"name": "boolean-condition",
+							"version": "2.2"
+						},
+						"operation": "boolean_condition",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"conditions": {
+								"type": "array",
+								"value": [
+									{
+										"type": "object",
+										"value": {
+											"value1": {
+												"type": "jsonpath",
+												"value": "$.steps.http-client-3.response.body.total"
+											},
+											"comparison_type": {
+												"type": "string",
+												"value": ">"
+											},
+											"value2": {
+												"type": "number",
+												"value": 0
+											}
+										}
+									}
+								]
+							},
+							"strictness": {
+								"type": "string",
+								"value": "All"
+							}
+						}
+					},
+					"callable-workflow-response-1": {
+						"title": "Invalid content type ID",
+						"connector": {
+							"name": "callable-workflow-response",
+							"version": "1.0"
+						},
+						"operation": "response",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"response": {
+								"value": {
+									"message": {
+										"type": "string",
+										"value": "\"{$.steps.trigger.data.contentType}\" is not a valid content type ID for this instance. \n\nYou can find the valid ID's for your instance in the right hand panel of under the content type settings."
+									},
+									"status_code": {
+										"type": "number",
+										"value": 404
+									}
+								},
+								"type": "object"
+							}
+						}
+					},
+					"random-helpers-1": {
+						"title": "Create an entry ID",
+						"connector": {
+							"name": "random-helpers",
+							"version": "1.1"
+						},
+						"operation": "random_hex",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"hex_length": {
+								"type": "number",
+								"value": 16
+							}
+						}
+					},
+					"http-client-4": {
+						"title": "Create entry",
+						"connector": {
+							"name": "http-client",
+							"version": "5.1"
+						},
+						"operation": "put_request",
+						"output_schema": {
+							"$schema": "http://json-schema.org/draft-04/schema#",
+							"type": "object",
+							"properties": {
+								"response": {
+									"type": "object",
+									"properties": {
+										"status_code": {
+											"type": "number"
+										},
+										"headers": {
+											"type": "object",
+											"properties": {
+												"x-iinfo": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-remaining": {
+													"type": "string"
+												},
+												"access-control-allow-origin": {
+													"type": "string"
+												},
+												"accept-patch": {
+													"type": "string"
+												},
+												"server": {
+													"type": "string"
+												},
+												"contentful-upstream": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-limit": {
+													"type": "string"
+												},
+												"strict-transport-security": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-reset": {
+													"type": "string"
+												},
+												"access-control-allow-headers": {
+													"type": "string"
+												},
+												"cf-space-id": {
+													"type": "string"
+												},
+												"x-contentful-request-id": {
+													"type": "string"
+												},
+												"content-type": {
+													"type": "string"
+												},
+												"date": {
+													"type": "string"
+												},
+												"set-cookie": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"contentful-api": {
+													"type": "string"
+												},
+												"cache-control": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-remaining": {
+													"type": "string"
+												},
+												"x-content-type-options": {
+													"type": "string"
+												},
+												"etag": {
+													"type": "string"
+												},
+												"access-control-allow-methods": {
+													"type": "string"
+												},
+												"x-contentful-route": {
+													"type": "string"
+												},
+												"access-control-expose-headers": {
+													"type": "string"
+												},
+												"x-cdn": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-limit": {
+													"type": "string"
+												},
+												"content-length": {
+													"type": "string"
+												},
+												"access-control-max-age": {
+													"type": "string"
+												},
+												"connection": {
+													"type": "string"
+												},
+												"cf-environment-id": {
+													"type": "string"
+												},
+												"cf-environment-uuid": {
+													"type": "string"
+												}
+											}
+										},
+										"body": {
+											"type": "object",
+											"properties": {
+												"sys": {
+													"type": "object",
+													"properties": {
+														"space": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"publishedCounter": {
+															"type": "number"
+														},
+														"updatedAt": {
+															"type": "string"
+														},
+														"updatedBy": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"environment": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"id": {
+																			"type": "string"
+																		},
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"contentType": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"version": {
+															"type": "number"
+														},
+														"type": {
+															"type": "string"
+														},
+														"id": {
+															"type": "string"
+														},
+														"createdAt": {
+															"type": "string"
+														},
+														"createdBy": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"fields": {
+													"type": "object",
+													"properties": {
+														"friendlyName": {
+															"type": "object",
+															"properties": {
+																"en-US": {
+																	"type": "string"
+																}
+															}
+														},
+														"systemName": {
+															"type": "object",
+															"properties": {
+																"en-US": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"error_handling": {
+							"strategy": "manual"
+						},
+						"authentication": {
+							"group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+							"title": "Property Mapping Demo Instance",
+							"service_icon": {
+								"icon_type": "url",
+								"value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+							},
+							"service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+							"auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+							"scopes": []
+						},
+						"properties": {
+							"body": {
+								"type": "object",
+								"value": {
+									"raw": {
+										"type": "object",
+										"value": {
+											"fields": {
+												"type": "jsonpath",
+												"value": "$.steps.trigger.data.fields"
+											}
+										}
+									}
+								}
+							},
+							"headers": {
+								"type": "array",
+								"value": [
+									{
+										"type": "object",
+										"value": {
+											"key": {
+												"type": "string",
+												"value": "Authorization"
+											},
+											"value": {
+												"type": "string",
+												"value": "Bearer {$.auth.auth_token}"
+											}
+										}
+									},
+									{
+										"type": "object",
+										"value": {
+											"key": {
+												"type": "string",
+												"value": "X-Contentful-Content-Type"
+											},
+											"value": {
+												"type": "jsonpath",
+												"value": "$.steps.trigger.data.contentType"
+											}
+										}
+									}
+								]
+							},
+							"auth": {
+								"type": "object",
+								"value": {
+									"none": {
+										"type": "null",
+										"value": null
+									}
+								}
+							},
+							"follow_redirect": {
+								"type": "boolean",
+								"value": false
+							},
+							"parse_response": {
+								"type": "string",
+								"value": "true"
+							},
+							"follow_keep_method": {
+								"type": "boolean",
+								"value": false
+							},
+							"url": {
+								"type": "string",
+								"value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.random-helpers-1.result}"
+							},
+							"reject_unauthorized": {
+								"type": "boolean",
+								"value": true
+							},
+							"status_code": {
+								"type": "object",
+								"value": {
+									"range": {
+										"type": "object",
+										"value": {
+											"from": {
+												"type": "integer",
+												"value": 200
+											},
+											"to": {
+												"type": "integer",
+												"value": 299
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"callable-workflow-response-5": {
+						"title": "Error: Publish failed",
+						"connector": {
+							"name": "callable-workflow-response",
+							"version": "1.0"
+						},
+						"operation": "response",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"response": {
+								"value": {
+									"status_code": {
+										"type": "jsonpath",
+										"value": "$.errors.http-client-2.status_code"
+									},
+									"message": {
+										"type": "string",
+										"value": "Entry publishing failed. Check logs."
+									},
+									"error": {
+										"type": "object",
+										"value": {
+											"api_message": {
+												"type": "jsonpath",
+												"value": "$.errors.http-client-2.message"
+											}
+										}
+									},
+									"success": {
+										"type": "object",
+										"value": {
+											"entry": {
+												"type": "jsonpath",
+												"value": "$.steps.http-client-4.response.body"
+											}
+										}
+									}
+								},
+								"type": "object"
+							}
+						}
+					},
+					"callable-workflow-response-2": {
+						"title": "Error: Creation failed",
+						"connector": {
+							"name": "callable-workflow-response",
+							"version": "1.0"
+						},
+						"operation": "response",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"response": {
+								"value": {
+									"status_code": {
+										"type": "jsonpath",
+										"value": "$.errors.http-client-4.status_code"
+									},
+									"message": {
+										"type": "string",
+										"value": "Entry creation failed. Most likely due to malformed request of the entry's fields object."
+									},
+									"error": {
+										"type": "object",
+										"value": {
+											"api_message": {
+												"type": "jsonpath",
+												"value": "$.errors.http-client-4.message"
+											}
+										}
+									}
+								},
+								"type": "object"
+							}
+						}
+					},
+					"callable-workflow-response-4": {
+						"title": "Success",
+						"connector": {
+							"name": "callable-workflow-response",
+							"version": "1.0"
+						},
+						"operation": "response",
+						"output_schema": {},
+						"error_handling": {},
+						"properties": {
+							"response": {
+								"value": {
+									"message": {
+										"value": "Entry created & published successfully.",
+										"type": "string"
+									},
+									"status_code": {
+										"type": "jsonpath",
+										"value": "$.steps.http-client-2.response.status_code"
+									},
+									"success": {
+										"type": "object",
+										"value": {
+											"entry": {
+												"type": "jsonpath",
+												"value": "$.steps.http-client-2.response.body"
+											}
+										}
+									}
+								},
+								"type": "object"
+							}
+						}
+					},
+					"http-client-2": {
+						"title": "Publish entry",
+						"connector": {
+							"name": "http-client",
+							"version": "5.1"
+						},
+						"operation": "put_request",
+						"output_schema": {
+							"$schema": "http://json-schema.org/draft-04/schema#",
+							"type": "object",
+							"properties": {
+								"response": {
+									"type": "object",
+									"properties": {
+										"status_code": {
+											"type": "number"
+										},
+										"headers": {
+											"type": "object",
+											"properties": {
+												"x-iinfo": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-remaining": {
+													"type": "string"
+												},
+												"access-control-allow-origin": {
+													"type": "string"
+												},
+												"accept-patch": {
+													"type": "string"
+												},
+												"server": {
+													"type": "string"
+												},
+												"contentful-upstream": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-second-limit": {
+													"type": "string"
+												},
+												"strict-transport-security": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-reset": {
+													"type": "string"
+												},
+												"access-control-allow-headers": {
+													"type": "string"
+												},
+												"cf-space-id": {
+													"type": "string"
+												},
+												"x-contentful-request-id": {
+													"type": "string"
+												},
+												"content-type": {
+													"type": "string"
+												},
+												"date": {
+													"type": "string"
+												},
+												"set-cookie": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"contentful-api": {
+													"type": "string"
+												},
+												"cache-control": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-remaining": {
+													"type": "string"
+												},
+												"x-content-type-options": {
+													"type": "string"
+												},
+												"etag": {
+													"type": "string"
+												},
+												"access-control-allow-methods": {
+													"type": "string"
+												},
+												"x-contentful-route": {
+													"type": "string"
+												},
+												"access-control-expose-headers": {
+													"type": "string"
+												},
+												"x-cdn": {
+													"type": "string"
+												},
+												"x-contentful-ratelimit-hour-limit": {
+													"type": "string"
+												},
+												"content-length": {
+													"type": "string"
+												},
+												"access-control-max-age": {
+													"type": "string"
+												},
+												"connection": {
+													"type": "string"
+												},
+												"cf-environment-id": {
+													"type": "string"
+												},
+												"cf-environment-uuid": {
+													"type": "string"
+												}
+											}
+										},
+										"body": {
+											"type": "object",
+											"properties": {
+												"sys": {
+													"type": "object",
+													"properties": {
+														"publishedAt": {
+															"type": "string"
+														},
+														"publishedBy": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"space": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"publishedVersion": {
+															"type": "number"
+														},
+														"publishedCounter": {
+															"type": "number"
+														},
+														"updatedAt": {
+															"type": "string"
+														},
+														"firstPublishedAt": {
+															"type": "string"
+														},
+														"updatedBy": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"environment": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"id": {
+																			"type": "string"
+																		},
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"contentType": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														},
+														"version": {
+															"type": "number"
+														},
+														"type": {
+															"type": "string"
+														},
+														"id": {
+															"type": "string"
+														},
+														"createdAt": {
+															"type": "string"
+														},
+														"createdBy": {
+															"type": "object",
+															"properties": {
+																"sys": {
+																	"type": "object",
+																	"properties": {
+																		"type": {
+																			"type": "string"
+																		},
+																		"linkType": {
+																			"type": "string"
+																		},
+																		"id": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"fields": {
+													"type": "object",
+													"properties": {
+														"friendlyName": {
+															"type": "object",
+															"properties": {
+																"en-US": {
+																	"type": "string"
+																}
+															}
+														},
+														"systemName": {
+															"type": "object",
+															"properties": {
+																"en-US": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"error_handling": {
+							"strategy": "manual"
+						},
+						"authentication": {
+							"group": "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+							"title": "Property Mapping Demo Instance",
+							"service_icon": {
+								"icon_type": "url",
+								"value": "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+							},
+							"service_id": "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+							"auth_app_id": "03f38e6a-f1b0-4f23-b834-7495df894531",
+							"scopes": []
+						},
+						"properties": {
+							"url": {
+								"value": "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.random-helpers-1.result}/published",
+								"type": "string"
+							},
+							"auth": {
+								"type": "object",
+								"value": {
+									"none": {
+										"type": "null",
+										"value": null
+									}
+								}
+							},
+							"headers": {
+								"type": "array",
+								"value": [
+									{
+										"value": {
+											"key": {
+												"value": "Authorization",
+												"type": "string"
+											},
+											"value": {
+												"value": "Bearer {$.auth.auth_token}",
+												"type": "string"
+											}
+										},
+										"type": "object"
+									},
+									{
+										"value": {
+											"key": {
+												"value": "X-Contentful-Version",
+												"type": "string"
+											},
+											"value": {
+												"value": "$.steps.http-client-4.response.body.sys.version",
+												"type": "jsonpath"
+											}
+										},
+										"type": "object"
+									}
+								]
+							},
+							"follow_redirect": {
+								"type": "boolean",
+								"value": false
+							},
+							"follow_keep_method": {
+								"type": "boolean",
+								"value": false
+							},
+							"reject_unauthorized": {
+								"type": "boolean",
+								"value": true
+							},
+							"parse_response": {
+								"type": "string",
+								"value": "true"
+							},
+							"status_code": {
+								"type": "object",
+								"value": {
+									"range": {
+										"type": "object",
+										"value": {
+											"from": {
+												"type": "integer",
+												"value": 200
+											},
+											"to": {
+												"type": "integer",
+												"value": 299
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"trigger": {
+						"title": "Callable Trigger",
+						"connector": {
+							"name": "callable-trigger",
+							"version": "2.0"
+						},
+						"operation": "trigger_and_respond",
+						"output_schema": {
+							"$schema": "http://json-schema.org/draft-04/schema#",
+							"type": "object",
+							"properties": {
+								"#calling_execution": {
+									"type": "string"
+								},
+								"#calling_workflow": {
+									"type": "string"
+								},
+								"data": {
+									"type": "object",
+									"properties": {
+										"contentType": {
+											"type": "string"
+										},
+										"version": {
+											"type": "number"
+										},
+										"entryId": {
+											"type": "string"
+										},
+										"fields": {
+											"type": "object",
+											"properties": {
+												"entryTitle": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"title": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"start": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"end": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"duration": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"description": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "object",
+															"properties": {
+																"data": {
+																	"type": "object",
+																	"properties": {}
+																},
+																"content": {
+																	"type": "array",
+																	"items": {
+																		"type": "object",
+																		"properties": {
+																			"data": {
+																				"type": "object",
+																				"properties": {}
+																			},
+																			"content": {
+																				"type": "array",
+																				"items": {
+																					"type": "object",
+																					"properties": {
+																						"data": {
+																							"type": "object",
+																							"properties": {}
+																						},
+																						"marks": {
+																							"type": "array",
+																							"items": {}
+																						},
+																						"value": {
+																							"type": "string"
+																						},
+																						"nodeType": {
+																							"type": "string"
+																						}
+																					},
+																					"required": [
+																						"data",
+																						"marks",
+																						"value",
+																						"nodeType"
+																					]
+																				}
+																			},
+																			"nodeType": {
+																				"type": "string"
+																			}
+																		},
+																		"required": [
+																			"data",
+																			"content",
+																			"nodeType"
+																		]
+																	}
+																},
+																"nodeType": {
+																	"type": "string"
+																}
+															}
+														}
+													}
+												},
+												"benefitsTitle": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "string"
+														}
+													}
+												},
+												"benefits": {
+													"type": "object",
+													"properties": {
+														"en-US": {
+															"type": "array",
+															"items": {
+																"type": "string"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"#calling_execution_log_url": {
+									"type": "string"
+								}
+							}
+						},
+						"error_handling": {},
+						"properties": {}
+					}
+				},
+				"dependencies": []
+			}
+		]
+	}
+}
