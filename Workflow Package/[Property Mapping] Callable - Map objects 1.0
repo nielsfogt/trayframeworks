@@ -1,0 +1,470 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "5fa48122-eea8-46ae-a569-0459c83f1dfc",
+    "created" : "2021-04-13T03:09:21.514Z",
+    "workspace_id" : "12c61eef-8d88-4281-921d-3b7db6b01106",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "6205ed29-3fc8-4ecf-86c5-66aea90ac62c",
+      "created" : "2021-04-13T13:10:10.704Z"
+    },
+    "title" : "[Property Mapping] Callable - Map objects 1.0",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : {
+        "type" : "object",
+        "properties" : {
+          "mapping_instance" : {
+            "title" : "Mapping Instance",
+            "type" : "string",
+            "description" : "This is the CMS space ID that houses your mappings.",
+            "enum" : [ {
+              "text" : "FIX ME",
+              "value" : "fix_me"
+            } ],
+            "default" : "fix_me"
+          },
+          "from" : {
+            "title" : "From",
+            "type" : "object",
+            "properties" : {
+              "system" : {
+                "type" : "string",
+                "title" : "From System",
+                "enum" : [ {
+                  "text" : "System 1",
+                  "value" : "system_1"
+                }, {
+                  "text" : "System 2",
+                  "value" : "system_2"
+                } ]
+              },
+              "objects" : {
+                "title" : "Objects",
+                "type" : "object",
+                "properties" : { },
+                "additionalProperties" : false,
+                "required" : [ ],
+                "advanced" : [ ]
+              }
+            },
+            "additionalProperties" : false,
+            "required" : [ "system", "objects" ],
+            "advanced" : [ ]
+          },
+          "to" : {
+            "title" : "To",
+            "type" : "object",
+            "properties" : {
+              "system" : {
+                "title" : "To System",
+                "type" : "string",
+                "enum" : [ {
+                  "text" : "System 1",
+                  "value" : "system_1"
+                }, {
+                  "text" : "System 2",
+                  "value" : "system_2"
+                } ],
+                "default" : "system_1"
+              },
+              "form" : {
+                "title" : "Form",
+                "type" : "string",
+                "enum" : [ {
+                  "text" : "Standard object(s)",
+                  "value" : "standard"
+                }, {
+                  "text" : "Update",
+                  "value" : "update"
+                } ],
+                "default" : "standard",
+                "description" : "If the to system has an object model different than the standard mapping this transforms the response into the required shape for the given system."
+              }
+            },
+            "additionalProperties" : false,
+            "required" : [ "system" ],
+            "advanced" : [ ]
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ "from", "to", "mapping_instance" ],
+        "advanced" : [ ]
+      },
+      "output_schema" : { }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "storage-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-2",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "callable-workflow-response-1",
+      "type" : "normal",
+      "content" : { }
+    } ],
+    "steps" : {
+      "callable-workflow-response-1" : {
+        "title" : "Return mapping",
+        "connector" : {
+          "name" : "callable-workflow-response",
+          "version" : "1.0"
+        },
+        "operation" : "response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "response" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-2.result"
+          }
+        }
+      },
+      "trigger" : {
+        "title" : "Read Me",
+        "connector" : {
+          "name" : "callable-trigger",
+          "version" : "2.0"
+        },
+        "operation" : "trigger_and_respond",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "#calling_execution" : {
+              "type" : "string"
+            },
+            "#calling_workflow" : {
+              "type" : "string"
+            },
+            "data" : {
+              "type" : "object",
+              "properties" : {
+                "mapping_type" : {
+                  "type" : "string"
+                },
+                "to" : {
+                  "type" : "object",
+                  "properties" : {
+                    "form" : {
+                      "type" : "string"
+                    },
+                    "system" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "from" : {
+                  "type" : "object",
+                  "properties" : {
+                    "system" : {
+                      "type" : "string"
+                    },
+                    "objects" : {
+                      "type" : "object",
+                      "properties" : {
+                        "person" : {
+                          "type" : "object",
+                          "properties" : {
+                            "first_name" : {
+                              "type" : "null"
+                            },
+                            "last_name" : {
+                              "type" : "null"
+                            },
+                            "email" : {
+                              "type" : "string"
+                            },
+                            "status" : {
+                              "type" : "null"
+                            },
+                            "status_reason" : {
+                              "type" : "null"
+                            },
+                            "lead_source" : {
+                              "type" : "string"
+                            },
+                            "id" : {
+                              "type" : "string"
+                            }
+                          }
+                        },
+                        "company" : {
+                          "type" : "object",
+                          "properties" : { }
+                        },
+                        "owner" : {
+                          "type" : "object",
+                          "properties" : {
+                            "active" : {
+                              "type" : "boolean"
+                            }
+                          }
+                        },
+                        "attribution" : {
+                          "type" : "object",
+                          "properties" : {
+                            "ga_id" : {
+                              "type" : "string"
+                            },
+                            "utm_campaign" : {
+                              "type" : "string"
+                            },
+                            "utm_medium" : {
+                              "type" : "string"
+                            },
+                            "utm_content" : {
+                              "type" : "string"
+                            },
+                            "campaign_id" : {
+                              "type" : "string"
+                            },
+                            "gclid" : {
+                              "type" : "string"
+                            },
+                            "utm_source" : {
+                              "type" : "string"
+                            },
+                            "status" : {
+                              "type" : "string"
+                            },
+                            "munchkin_id" : {
+                              "type" : "string"
+                            },
+                            "utm_term" : {
+                              "type" : "string"
+                            },
+                            "offer_type" : {
+                              "type" : "null"
+                            },
+                            "referrer" : {
+                              "type" : "null"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "#calling_execution_log_url" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : { }
+      },
+      "storage-1" : {
+        "title" : "Get mappings",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.3"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "default_value" : {
+            "type" : "null",
+            "value" : null
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "growth_ops_mappings_{$.steps.trigger.data.mapping_instance}"
+          }
+        }
+      },
+      "script-2" : {
+        "title" : "Mapping script",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "result" : {
+              "type" : "object",
+              "properties" : {
+                "matched" : {
+                  "type" : "boolean"
+                },
+                "result" : {
+                  "type" : "object",
+                  "properties" : {
+                    "lead" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "key" : {
+                            "type" : "string"
+                          },
+                          "value" : {
+                            "type" : "string"
+                          }
+                        },
+                        "required" : [ "key", "value" ]
+                      }
+                    },
+                    "contact" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "key" : {
+                            "type" : "string"
+                          },
+                          "value" : {
+                            "type" : "string"
+                          }
+                        },
+                        "required" : [ "key", "value" ]
+                      }
+                    },
+                    "campaign_member" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "key" : {
+                            "type" : "string"
+                          },
+                          "value" : {
+                            "type" : "string"
+                          }
+                        },
+                        "required" : [ "key", "value" ]
+                      }
+                    }
+                  }
+                },
+                "valid_objects" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                },
+                "message" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "console" : {
+              "type" : "array",
+              "items" : { }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "mappings"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.storage-1.value"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "from"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.trigger.data.from"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "to"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.trigger.data.to"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "updatable_systems"
+                },
+                "value" : {
+                  "type" : "array",
+                  "value" : [ {
+                    "type" : "object",
+                    "value" : {
+                      "name" : {
+                        "type" : "string",
+                        "value" : "Intercom"
+                      },
+                      "id" : {
+                        "type" : "string",
+                        "value" : "1UwxplqTxJbRceYCeLTzQH"
+                      }
+                    }
+                  } ]
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "form"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.trigger.data.to.form"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n \n// This rewrites nested propeties in a single line so we can write dot notation in the mappings to the property we wish to map.\nfunction flattenObject(ob) {\n  var toReturn = {};\n  for (var i in ob) {\n    if (!ob.hasOwnProperty(i)) continue;\n\n    if ((typeof ob[i]) == 'object') {\n      var flatObject = flattenObject(ob[i]);\n      for (var x in flatObject) {\n        if (!flatObject.hasOwnProperty(x)) continue;\n\n        toReturn[i + '.' + x] = flatObject[x];\n      }\n    } else {\n      toReturn[i] = ob[i];\n    }\n  }\n  return toReturn;\n}\n\nvar response = {\n  matched: false,\n  result: {},\n}\nvar maps = [];\n\n\n// Loop over each \"from\" property and attempt to find a mapping.\nObject.keys(input.from.objects).forEach((object, i) => {\n  var isArray = Array.isArray(input.from.objects[object]);\n  // First validate the provided object is in fact an object...\n  if (typeof input.from.objects[object] == \"object\" && isArray == false && input.from.objects[object] != null) {\n    // Transform null values into a default string so set defaults can catch them\n    Object.values(input.from.objects[object]).forEach((p, i) => {\n      if (!p || p == \" \") {\n        input.from.objects[object][Object.keys(input.from.objects[object])[i]] = \"{{empty_property}}\"\n      }\n    })\n    // Flatten the object's nested properties (if they're not already flat)...\n    input.from.objects[object] = flattenObject(input.from.objects[object])\n    // ...then, check each of the mappings groups and seeing if we've defined a mapping item in the group that matches this specific property's source object & system...\n    input.mappings.forEach((mapping, mappingIndex) => {\n      //Sometimes there's empty items in the mapping list b/c they're in draft in contentful,so this skips this step.\n      if (mapping) {\n        // If the findIndex function returns a valid index for a group, we'll search this group for the desired \"to\" system/object.\n        var groupIndex = mapping.findIndex(group => {\n          return group.object == object && group.system == input.from.system\n        });\n        // If we found a mapping group index...\n        if (groupIndex != -1) {\n          // ...now search it for the matching \"to\" property/object...\n          mapping.forEach(map => {\n            var propName = mapping[groupIndex].property;\n            // If we find a matching \"to\" item...\n            if (map.system == input.to.system && input.from.objects[object][propName]) {\n              // Push the item into the maps array, which we'll parse below in order to build the complete mapping result.\n              maps.push({\n                map: map,\n                from: {\n                  property: object,\n                  value: input.from.objects[object][propName]\n                }\n              })\n              // Also, declare we found at least one matched property.\n              response.matched = true\n            }\n          })\n        }\n      }\n    })\n    console.log(object)\n    console.log(response)\n    // If we've found a valid object, add it to the response\n    if (response.matched == true) {\n      // Declare this object to be valid for the response.\n      if (!response.valid_objects) {\n        response.valid_objects = [object];\n      } else {\n        response.valid_objects.push(object)\n      }\n    }\n  } else {\n    // If the provided object wasn't valid, set this data in the response.\n    if (isArray == true) {\n      var dataType = \"array\"\n    } else {\n      var dataType = typeof input.from.objects[object]\n    }\n    response.message = \"One of your provided objects was actually a(n) \" + dataType + \". Mapping only works for key/value object structures. Check the invalid_objects list for details.\"\n    if (!response.invalid_objects) {\n      response.invalid_objects = [{\n        name: object,\n        type: dataType\n      }];\n    } else {\n      response.invalid_objects.push({\n        name: object,\n        type: dataType\n      })\n    }\n  }\n});\n// If we found any mappings, complete the process...\nif (response.matched == true) {\n  // This section creates the properties in `response.result` which we'll push values into for the final result, ex: result.person, etc...\n  var objects = [];\n  // Loop each of the maps we found and push the object types into an array...\n  maps.forEach(map => objects.push(map.map.object))\n  // Remove any duplicates from the array...\n  objects = _.uniq(objects);\n  // Loop the unique object names and creates them as empty objects in the response object...\n  objects.forEach(object => response.result[object] = {})\n  // Now loop the objects in the response we wish to return with mapped properties and...\n  Object.keys(response.result).forEach(object => {\n    // ...search the maps array for a list of objects & properties to push into each respective result object.\n    var mapJob = maps.filter(map => map.map.object == object);\n    // If we found object to map to...\n    if (mapJob) {\n      // ...map each one into the final result.\n      mapJob.forEach(job => {\n        // Enforce system-specific charactor limits by cutting the string ex: referrers\n        if (job.map.character_limit && job.from.value) {\n          if (job.from.value.length > job.map.character_limit) {\n            job.from.value = job.from.value.substr(0, job.map.character_limit);\n          }\n        }\n        // Apply default values if necessary\n        if (job.from.value == \"{{empty_property}}\" && job.map.default_value) {\n          job.from.value = job.map.default_value;\n        } else if (job.from.value == \"{{empty_property}}\" && !job.map.default_value) {\n          job.from.value = null\n        }\n        response.result[object][job.map.property] = job.from.value\n      })\n    }\n  })\n} else if (!response.message) {\n  // If we hadn't already set a message due to invalid objects, set the message to let them know the provided objects didn't have any mappings.\n  response.message = \"Could not find any mappings for the provided objects\"\n}\nif (input.form == \"update\") {\n  if (input.updatable_systems.find(({\n      name\n    }) => name == input.to.system) != null) {\n    switch (input.to.system) {\n      case 'Salesforce':\n      case 'Intercom':\n        Object.keys(response.result).forEach(object => {\n          var updates = []\n          Object.keys(response.result[object]).forEach(prop => {\n            // find the mapping group for this property\n            var exclusion = input.mappings.map((group, i) => {\n              if (group) {\n                var mapIndex = group.findIndex(map => {\n                  if (map.sys_update_exclude != null) {\n                    return map.property == prop && map.system == input.to.system && map.object == object && map.sys_update_exclude.find(sys => sys.name == input.to.system) != undefined\n                  }\n                })\n                if (mapIndex >= 0) {\n                  return {\n                    groupIndex: i,\n                    mapIndex: mapIndex\n                  }\n                }\n              }\n            }).filter(item => item != undefined)[0]\n            if (!exclusion) {\n              var value = response.result[object][prop];\n              if (prop != 'Lead_Date2__c' || (prop == 'Lead_Date2__c' && value.startsWith('{{') != false)) {\n                if (value) {\n                  if (typeof value == \"string\" && value.startsWith('{{') == true) {\n                    var token = value.match(/([a-zA-Z\\_]+)/g)[0]\n                    switch (token) {\n                      case (\"current_date\"):\n                        var value = input.tokens.current_date\n                    }\n                  }\n                }\n                updates.push({\n                  key: prop,\n                  value: value\n                })\n              }\n            }\n          })\n          response.result[object] = updates\n        })\n        break;\n    }\n    response.message = \"Found valid update model.\"\n  } else {\n    response.message = \"Could not find valid update model for this system.\"\n  }\n}\n  return response\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      }
+    },
+    "dependencies" : [ ]
+  } ]
+}
