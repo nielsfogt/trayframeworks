@@ -3,15 +3,15 @@
   "projects" : [ ],
   "tray_export_version" : 3,
   "workflows" : [ {
-    "id" : "7b5136b2-6970-4ea7-bda5-eb22917b64c4",
-    "created" : "2021-02-28T19:26:28.299Z",
+    "id" : "8ecc4c02-985a-4c16-8c67-ddfee7d072fc",
+    "created" : "2021-03-01T07:35:18.913Z",
     "workspace_id" : "12c61eef-8d88-4281-921d-3b7db6b01106",
     "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
     "version" : {
-      "id" : "704b6b99-5833-4084-afa7-cd5298dd5283",
-      "created" : "2021-04-13T00:37:51.469Z"
+      "id" : "edf3115b-6e33-49e7-bee0-1de1d32b8d54",
+      "created" : "2021-04-21T18:45:54.629Z"
     },
-    "title" : "[Contentful] Entries - Create and publish entry 1.0",
+    "title" : "[Contentful] Entries - Update and publish entry 1.0",
     "enabled" : true,
     "tags" : [ ],
     "settings" : {
@@ -19,23 +19,35 @@
       "input_schema" : {
         "type" : "object",
         "properties" : {
-          "fields" : {
-            "title" : "Fields",
-            "description" : "The entry JSON object mapped to entry fields",
+          "entry" : {
+            "title" : "Entry",
             "type" : "object",
-            "properties" : { },
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "title" : "ID"
+              },
+              "fields" : {
+                "title" : "Fields",
+                "type" : "object",
+                "properties" : {
+                  "new_property" : {
+                    "type" : "string",
+                    "title" : "New property"
+                  }
+                },
+                "additionalProperties" : false,
+                "required" : [ ],
+                "advanced" : [ ]
+              }
+            },
             "additionalProperties" : false,
-            "required" : [ ],
+            "required" : [ "id" ],
             "advanced" : [ ]
-          },
-          "contentType" : {
-            "title" : "Content Type",
-            "type" : "string",
-            "description" : "Must match an available content type in the space. Use the system ID of the content type."
           }
         },
         "additionalProperties" : false,
-        "required" : [ "fields", "contentType" ],
+        "required" : [ ],
         "advanced" : [ ]
       },
       "output_schema" : {
@@ -104,18 +116,15 @@
       "type" : "normal",
       "content" : { }
     }, {
-      "name" : "http-client-3",
-      "type" : "normal",
-      "content" : { }
-    }, {
-      "name" : "boolean-condition-2",
+      "name" : "http-client-1",
       "type" : "branch",
       "content" : {
-        "true" : [ {
-          "name" : "random-helpers-1",
+        "error" : [ {
+          "name" : "callable-workflow-response-3",
           "type" : "normal",
           "content" : { }
-        }, {
+        } ],
+        "success" : [ {
           "name" : "http-client-4",
           "type" : "branch",
           "content" : {
@@ -141,158 +150,21 @@
               }
             } ]
           }
-        } ],
-        "false" : [ {
-          "name" : "callable-workflow-response-1",
-          "type" : "normal",
-          "content" : { }
         } ]
       }
     } ],
     "steps" : {
-      "http-client-3" : {
-        "title" : "Search for content type",
+      "http-client-4" : {
+        "title" : "Update entry",
         "connector" : {
           "name" : "http-client",
           "version" : "5.1"
         },
-        "operation" : "get_request",
-        "output_schema" : {
-          "$schema" : "http://json-schema.org/draft-04/schema#",
-          "type" : "object",
-          "properties" : {
-            "response" : {
-              "type" : "object",
-              "properties" : {
-                "status_code" : {
-                  "type" : "number"
-                },
-                "headers" : {
-                  "type" : "object",
-                  "properties" : {
-                    "x-iinfo" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-ratelimit-second-remaining" : {
-                      "type" : "string"
-                    },
-                    "access-control-allow-origin" : {
-                      "type" : "string"
-                    },
-                    "server" : {
-                      "type" : "string"
-                    },
-                    "contentful-upstream" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-ratelimit-second-limit" : {
-                      "type" : "string"
-                    },
-                    "strict-transport-security" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-ratelimit-reset" : {
-                      "type" : "string"
-                    },
-                    "access-control-allow-headers" : {
-                      "type" : "string"
-                    },
-                    "cf-space-id" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-request-id" : {
-                      "type" : "string"
-                    },
-                    "content-type" : {
-                      "type" : "string"
-                    },
-                    "date" : {
-                      "type" : "string"
-                    },
-                    "set-cookie" : {
-                      "type" : "array",
-                      "items" : {
-                        "type" : "string"
-                      }
-                    },
-                    "contentful-api" : {
-                      "type" : "string"
-                    },
-                    "cache-control" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-ratelimit-hour-remaining" : {
-                      "type" : "string"
-                    },
-                    "x-content-type-options" : {
-                      "type" : "string"
-                    },
-                    "etag" : {
-                      "type" : "string"
-                    },
-                    "access-control-allow-methods" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-route" : {
-                      "type" : "string"
-                    },
-                    "access-control-expose-headers" : {
-                      "type" : "string"
-                    },
-                    "x-cdn" : {
-                      "type" : "string"
-                    },
-                    "x-contentful-ratelimit-hour-limit" : {
-                      "type" : "string"
-                    },
-                    "content-length" : {
-                      "type" : "string"
-                    },
-                    "access-control-max-age" : {
-                      "type" : "string"
-                    },
-                    "connection" : {
-                      "type" : "string"
-                    },
-                    "cf-environment-id" : {
-                      "type" : "string"
-                    },
-                    "cf-environment-uuid" : {
-                      "type" : "string"
-                    }
-                  }
-                },
-                "body" : {
-                  "type" : "object",
-                  "properties" : {
-                    "sys" : {
-                      "type" : "object",
-                      "properties" : {
-                        "type" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "total" : {
-                      "type" : "number"
-                    },
-                    "skip" : {
-                      "type" : "number"
-                    },
-                    "limit" : {
-                      "type" : "number"
-                    },
-                    "items" : {
-                      "type" : "array",
-                      "items" : { }
-                    }
-                  }
-                }
-              }
-            }
-          }
+        "operation" : "put_request",
+        "output_schema" : { },
+        "error_handling" : {
+          "strategy" : "manual"
         },
-        "error_handling" : { },
         "authentication" : {
           "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
           "title" : "Property Mapping Demo Instance",
@@ -305,21 +177,19 @@
           "scopes" : [ ]
         },
         "properties" : {
-          "queries" : {
-            "type" : "array",
-            "value" : [ {
-              "type" : "object",
-              "value" : {
-                "key" : {
-                  "type" : "string",
-                  "value" : "sys.id"
-                },
+          "body" : {
+            "type" : "object",
+            "value" : {
+              "raw" : {
+                "type" : "object",
                 "value" : {
-                  "type" : "jsonpath",
-                  "value" : "$.steps.trigger.data.contentType"
+                  "fields" : {
+                    "type" : "jsonpath",
+                    "value" : "$.steps.trigger.data.entry.fields"
+                  }
                 }
               }
-            } ]
+            }
           },
           "headers" : {
             "type" : "array",
@@ -333,6 +203,30 @@
                 "value" : {
                   "type" : "string",
                   "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.http-client-1.response.body.sys.version"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Content-Type"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "application/json-patch+json"
                 }
               }
             } ]
@@ -360,7 +254,7 @@
           },
           "url" : {
             "type" : "string",
-            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types"
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}"
           },
           "reject_unauthorized" : {
             "type" : "boolean",
@@ -386,90 +280,13 @@
           }
         }
       },
-      "boolean-condition-2" : {
-        "title" : "Found content type?",
-        "connector" : {
-          "name" : "boolean-condition",
-          "version" : "2.2"
-        },
-        "operation" : "boolean_condition",
-        "output_schema" : { },
-        "error_handling" : { },
-        "properties" : {
-          "conditions" : {
-            "type" : "array",
-            "value" : [ {
-              "type" : "object",
-              "value" : {
-                "value1" : {
-                  "type" : "jsonpath",
-                  "value" : "$.steps.http-client-3.response.body.total"
-                },
-                "comparison_type" : {
-                  "type" : "string",
-                  "value" : ">"
-                },
-                "value2" : {
-                  "type" : "number",
-                  "value" : 0
-                }
-              }
-            } ]
-          },
-          "strictness" : {
-            "type" : "string",
-            "value" : "All"
-          }
-        }
-      },
-      "callable-workflow-response-1" : {
-        "title" : "Invalid content type ID",
-        "connector" : {
-          "name" : "callable-workflow-response",
-          "version" : "1.0"
-        },
-        "operation" : "response",
-        "output_schema" : { },
-        "error_handling" : { },
-        "properties" : {
-          "response" : {
-            "value" : {
-              "message" : {
-                "type" : "string",
-                "value" : "\"{$.steps.trigger.data.contentType}\" is not a valid content type ID for this instance. \n\nYou can find the valid ID's for your instance in the right hand panel of under the content type settings."
-              },
-              "status_code" : {
-                "type" : "number",
-                "value" : 404
-              }
-            },
-            "type" : "object"
-          }
-        }
-      },
-      "random-helpers-1" : {
-        "title" : "Create an entry ID",
-        "connector" : {
-          "name" : "random-helpers",
-          "version" : "1.1"
-        },
-        "operation" : "random_hex",
-        "output_schema" : { },
-        "error_handling" : { },
-        "properties" : {
-          "hex_length" : {
-            "type" : "number",
-            "value" : 16
-          }
-        }
-      },
-      "http-client-4" : {
-        "title" : "Create entry",
+      "http-client-1" : {
+        "title" : "Get entry",
         "connector" : {
           "name" : "http-client",
           "version" : "5.1"
         },
-        "operation" : "put_request",
+        "operation" : "get_request",
         "output_schema" : {
           "$schema" : "http://json-schema.org/draft-04/schema#",
           "type" : "object",
@@ -584,6 +401,28 @@
                     "sys" : {
                       "type" : "object",
                       "properties" : {
+                        "publishedAt" : {
+                          "type" : "string"
+                        },
+                        "publishedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
                         "space" : {
                           "type" : "object",
                           "properties" : {
@@ -603,10 +442,16 @@
                             }
                           }
                         },
+                        "publishedVersion" : {
+                          "type" : "number"
+                        },
                         "publishedCounter" : {
                           "type" : "number"
                         },
                         "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "firstPublishedAt" : {
                           "type" : "string"
                         },
                         "updatedBy" : {
@@ -741,20 +586,6 @@
           "scopes" : [ ]
         },
         "properties" : {
-          "body" : {
-            "type" : "object",
-            "value" : {
-              "raw" : {
-                "type" : "object",
-                "value" : {
-                  "fields" : {
-                    "type" : "jsonpath",
-                    "value" : "$.steps.trigger.data.fields"
-                  }
-                }
-              }
-            }
-          },
           "headers" : {
             "type" : "array",
             "value" : [ {
@@ -767,18 +598,6 @@
                 "value" : {
                   "type" : "string",
                   "value" : "Bearer {$.auth.auth_token}"
-                }
-              }
-            }, {
-              "type" : "object",
-              "value" : {
-                "key" : {
-                  "type" : "string",
-                  "value" : "X-Contentful-Content-Type"
-                },
-                "value" : {
-                  "type" : "jsonpath",
-                  "value" : "$.steps.trigger.data.contentType"
                 }
               }
             } ]
@@ -806,7 +625,7 @@
           },
           "url" : {
             "type" : "string",
-            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.random-helpers-1.result}"
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}"
           },
           "reject_unauthorized" : {
             "type" : "boolean",
@@ -876,7 +695,7 @@
         }
       },
       "callable-workflow-response-2" : {
-        "title" : "Error: Creation failed",
+        "title" : "Error: Update failed",
         "connector" : {
           "name" : "callable-workflow-response",
           "version" : "1.0"
@@ -893,7 +712,7 @@
               },
               "message" : {
                 "type" : "string",
-                "value" : "Entry creation failed. Most likely due to malformed request of the entry's fields object."
+                "value" : "Entry update failed. Most likely due to malformed request of the entry's fields object."
               },
               "error" : {
                 "type" : "object",
@@ -922,7 +741,7 @@
           "response" : {
             "value" : {
               "message" : {
-                "value" : "Entry created & published successfully.",
+                "value" : "Entry updated & published successfully.",
                 "type" : "string"
               },
               "status_code" : {
@@ -1250,7 +1069,7 @@
         },
         "properties" : {
           "url" : {
-            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.random-helpers-1.result}/published",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries/{$.steps.trigger.data.entry.id}/published",
             "type" : "string"
           },
           "auth" : {
@@ -1326,6 +1145,40 @@
           }
         }
       },
+      "callable-workflow-response-3" : {
+        "title" : "Entry doesn't exist",
+        "connector" : {
+          "name" : "callable-workflow-response",
+          "version" : "1.0"
+        },
+        "operation" : "response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "response" : {
+            "value" : {
+              "message" : {
+                "type" : "string",
+                "value" : "Could not find an entry under the ID of: \"{$.steps.trigger.data.entry}\"."
+              },
+              "status_code" : {
+                "type" : "number",
+                "value" : 404
+              },
+              "error" : {
+                "type" : "object",
+                "value" : {
+                  "api_message" : {
+                    "type" : "jsonpath",
+                    "value" : "$.errors.http-client-1.response.message"
+                  }
+                }
+              }
+            },
+            "type" : "object"
+          }
+        }
+      },
       "trigger" : {
         "title" : "Callable Trigger",
         "connector" : {
@@ -1346,134 +1199,48 @@
             "data" : {
               "type" : "object",
               "properties" : {
-                "contentType" : {
-                  "type" : "string"
-                },
-                "version" : {
-                  "type" : "number"
-                },
-                "entryId" : {
-                  "type" : "string"
-                },
-                "fields" : {
+                "entry" : {
                   "type" : "object",
                   "properties" : {
-                    "entryTitle" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
+                    "id" : {
+                      "type" : "string"
                     },
-                    "title" : {
+                    "fields" : {
                       "type" : "object",
                       "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "start" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "end" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "duration" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "description" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
+                        "objects" : {
                           "type" : "object",
                           "properties" : {
-                            "data" : {
-                              "type" : "object",
-                              "properties" : { }
-                            },
-                            "content" : {
+                            "en-US" : {
                               "type" : "array",
                               "items" : {
                                 "type" : "object",
                                 "properties" : {
-                                  "data" : {
+                                  "sys" : {
                                     "type" : "object",
-                                    "properties" : { }
-                                  },
-                                  "content" : {
-                                    "type" : "array",
-                                    "items" : {
-                                      "type" : "object",
-                                      "properties" : {
-                                        "data" : {
-                                          "type" : "object",
-                                          "properties" : { }
-                                        },
-                                        "marks" : {
-                                          "type" : "array",
-                                          "items" : { }
-                                        },
-                                        "value" : {
-                                          "type" : "string"
-                                        },
-                                        "nodeType" : {
-                                          "type" : "string"
-                                        }
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
                                       },
-                                      "required" : [ "data", "marks", "value", "nodeType" ]
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
                                     }
-                                  },
-                                  "nodeType" : {
-                                    "type" : "string"
                                   }
-                                },
-                                "required" : [ "data", "content", "nodeType" ]
+                                }
                               }
-                            },
-                            "nodeType" : {
-                              "type" : "string"
                             }
-                          }
-                        }
-                      }
-                    },
-                    "benefitsTitle" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "string"
-                        }
-                      }
-                    },
-                    "benefits" : {
-                      "type" : "object",
-                      "properties" : {
-                        "en-US" : {
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string"
                           }
                         }
                       }
                     }
                   }
+                },
+                "contentType" : {
+                  "type" : "null"
                 }
               }
             },

@@ -1,0 +1,3234 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "6505c8d4-a1a1-46d2-9156-1319f234ab9e",
+    "created" : "2021-04-15T20:29:24.489Z",
+    "workspace_id" : "12c61eef-8d88-4281-921d-3b7db6b01106",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "14542e77-7fe9-4d93-98ae-5236b8b408c6",
+      "created" : "2021-04-16T17:02:16.255Z"
+    },
+    "title" : "[Property Mapping] CMS Setup - CreateUpdate data models - Update existing model 1.0",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : {
+        "type" : "object",
+        "properties" : {
+          "current" : {
+            "title" : "Current",
+            "type" : "object",
+            "properties" : {
+              "new_property" : {
+                "type" : "string",
+                "title" : "New property"
+              }
+            },
+            "additionalProperties" : false,
+            "required" : [ ],
+            "advanced" : [ ]
+          },
+          "new" : {
+            "title" : "New",
+            "type" : "object",
+            "properties" : {
+              "new_property" : {
+                "type" : "string",
+                "title" : "New property"
+              }
+            },
+            "additionalProperties" : false,
+            "required" : [ ],
+            "advanced" : [ ]
+          },
+          "content_type" : {
+            "title" : "content_type",
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string",
+                "title" : "id"
+              }
+            },
+            "additionalProperties" : false,
+            "required" : [ ],
+            "advanced" : [ ]
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ ],
+        "advanced" : [ ]
+      },
+      "output_schema" : {
+        "type" : "object",
+        "properties" : {
+          "version" : {
+            "type" : "string",
+            "title" : "Version"
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ ],
+        "advanced" : [ ]
+      }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "object-helpers-6",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "loop-1",
+      "type" : "loop",
+      "content" : {
+        "_loop" : [ {
+          "name" : "storage-6",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "list-helpers-2",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "object-helpers-3",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "boolean-condition-2",
+          "type" : "branch",
+          "content" : {
+            "true" : [ {
+              "name" : "script-1",
+              "type" : "normal",
+              "content" : { }
+            }, {
+              "name" : "storage-7",
+              "type" : "normal",
+              "content" : { }
+            } ],
+            "false" : [ ]
+          }
+        } ]
+      }
+    }, {
+      "name" : "storage-8",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "boolean-condition-3",
+      "type" : "branch",
+      "content" : {
+        "true" : [ {
+          "name" : "http-client-7",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "http-client-6",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "list-helpers-3",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "object-helpers-7",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "http-client-8",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "http-client-9",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "storage-4",
+          "type" : "normal",
+          "content" : { }
+        } ],
+        "false" : [ ]
+      }
+    }, {
+      "name" : "storage-5",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "http-client-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "callable-workflow-response-1",
+      "type" : "normal",
+      "content" : { }
+    } ],
+    "steps" : {
+      "http-client-8" : {
+        "title" : "Delete omitted fields",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "put_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-iinfo" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "set-cookie" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-cdn" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "space" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "publishedCounter" : {
+                          "type" : "number"
+                        },
+                        "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "updatedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "environment" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "id" : {
+                                  "type" : "string"
+                                },
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "version" : {
+                          "type" : "number"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        },
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "createdAt" : {
+                          "type" : "string"
+                        },
+                        "createdBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                }
+                              }
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+          "title" : "Property Mapping Demo Instance",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "body" : {
+            "type" : "object",
+            "value" : {
+              "raw" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.object-helpers-7.result"
+              }
+            }
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "value" : {
+                  "type" : "string",
+                  "value" : "application/vnd.contentful.management.v1+json"
+                },
+                "key" : {
+                  "type" : "string",
+                  "value" : "Content-Type"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.http-client-6.response.body.sys.version"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types/{$.steps.trigger.data.content_type.id}"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "list-helpers-2" : {
+        "title" : "Get new field",
+        "connector" : {
+          "name" : "list-helpers",
+          "version" : "1.9"
+        },
+        "operation" : "filter",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "filter_type" : {
+            "type" : "string",
+            "value" : "inclusive"
+          },
+          "conjunction" : {
+            "type" : "string",
+            "value" : "OR"
+          },
+          "list" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.storage-6.value.updates.fields"
+          },
+          "filters" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "id" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.loop-1.value.id"
+                }
+              }
+            } ]
+          }
+        }
+      },
+      "script-1" : {
+        "title" : "Update field to omitted",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "field_updates"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.storage-6.value"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "field"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.loop-1.value"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  input.field_updates.updates.fields = input.field_updates.updates.fields.map(field=>{\n    if(field.id == input.field.id){\n      field = input.field\n      field.omitted = true\n      input.field_updates.omits.push({id:field.id})\n    }\n    return field\n  })\n  \t\n  return input.field_updates\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "storage-5" : {
+        "title" : "Get version",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "version_{$.steps.trigger.data.content_type.id}"
+          },
+          "default_value" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.trigger.data.current[0].sys.version"
+          }
+        }
+      },
+      "boolean-condition-2" : {
+        "title" : "Old field change?",
+        "connector" : {
+          "name" : "boolean-condition",
+          "version" : "2.3"
+        },
+        "operation" : "boolean_condition",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "conditions" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "value1" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.object-helpers-3.source"
+                },
+                "comparison_type" : {
+                  "type" : "string",
+                  "value" : "!=="
+                },
+                "value2" : {
+                  "type" : "object",
+                  "value" : { }
+                }
+              }
+            } ]
+          },
+          "strictness" : {
+            "type" : "string",
+            "value" : "All"
+          }
+        }
+      },
+      "callable-workflow-response-1" : {
+        "title" : "Callable response",
+        "connector" : {
+          "name" : "callable-workflow-response",
+          "version" : "1.0"
+        },
+        "operation" : "response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "response" : {
+            "value" : {
+              "version" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.http-client-1.response.body.sys.version"
+              }
+            },
+            "type" : "object"
+          }
+        }
+      },
+      "list-helpers-3" : {
+        "title" : "Remove omitted fields",
+        "description" : "This deletes them in subsequent call",
+        "connector" : {
+          "name" : "list-helpers",
+          "version" : "1.9"
+        },
+        "operation" : "filter",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "filter_type" : {
+            "type" : "string",
+            "value" : "exclusive"
+          },
+          "conjunction" : {
+            "type" : "string",
+            "value" : "OR"
+          },
+          "filters" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.storage-8.value.omits"
+          },
+          "list" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.storage-8.value.updates.fields"
+          }
+        }
+      },
+      "http-client-7" : {
+        "title" : "Submit omitted fields",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "put_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-iinfo" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "set-cookie" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-cdn" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "space" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "publishedCounter" : {
+                          "type" : "number"
+                        },
+                        "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "updatedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "environment" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "id" : {
+                                  "type" : "string"
+                                },
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "version" : {
+                          "type" : "number"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        },
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "createdAt" : {
+                          "type" : "string"
+                        },
+                        "createdBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                }
+                              }
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+          "title" : "Property Mapping Demo Instance",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "body" : {
+            "type" : "object",
+            "value" : {
+              "raw" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.storage-8.value.updates"
+              }
+            }
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "value" : {
+                  "type" : "string",
+                  "value" : "application/vnd.contentful.management.v1+json"
+                },
+                "key" : {
+                  "type" : "string",
+                  "value" : "Content-Type"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.trigger.data.current[0].sys.version"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types/{$.steps.trigger.data.content_type.id}"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "object-helpers-3" : {
+        "title" : "Compare old field w/ new",
+        "connector" : {
+          "name" : "object-helpers",
+          "version" : "4.1"
+        },
+        "operation" : "find_difference",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "source" : {
+              "type" : "object",
+              "properties" : { }
+            },
+            "target" : {
+              "type" : "object",
+              "properties" : { }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "source" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.loop-1.value"
+          },
+          "target" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.list-helpers-2.result[0]"
+          }
+        }
+      },
+      "object-helpers-7" : {
+        "title" : "Create updated fields w/out omitted",
+        "connector" : {
+          "name" : "object-helpers",
+          "version" : "4.1"
+        },
+        "operation" : "add_key_value_pairs",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "result" : {
+              "type" : "object",
+              "properties" : {
+                "fields" : {
+                  "type" : "null"
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "source" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.storage-8.value.updates"
+          },
+          "list" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "fields"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.list-helpers-3.result"
+                }
+              }
+            } ]
+          }
+        }
+      },
+      "storage-8" : {
+        "title" : "Get updates",
+        "description" : "First we assume there's no updates via the default object, we change this if we have them.",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "get",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "object",
+              "properties" : {
+                "omits" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "type" : "string"
+                      }
+                    }
+                  }
+                },
+                "updates" : {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "linkType" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "type" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "linkType" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                },
+                                "linkContentType" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                },
+                                "in" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "required" : [ ]
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "omitted", "localized", "name", "disabled", "validations", "id", "type", "required" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "default_value" : {
+            "type" : "object",
+            "value" : {
+              "updates" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.trigger.data.new"
+              },
+              "omits" : {
+                "type" : "array",
+                "value" : [ ]
+              }
+            }
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "field_updates_{$.steps.trigger.data.content_type.id}"
+          }
+        }
+      },
+      "loop-1" : {
+        "title" : "Check old fields",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "type" : "object",
+          "$schema" : "http://json-schema.org/draft-03/schema",
+          "id" : "http://jsonschema.net",
+          "required" : true,
+          "additionalProperties" : false,
+          "properties" : {
+            "value" : { },
+            "count" : {
+              "type" : "number",
+              "id" : "http://jsonschema.net/total"
+            },
+            "index" : {
+              "type" : "number",
+              "id" : "http://jsonschema.net/index"
+            },
+            "is_first" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_first"
+            },
+            "is_last" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_last"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.trigger.data.current[0].fields"
+          }
+        }
+      },
+      "storage-4" : {
+        "title" : "Set version",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "set",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "version_{$.steps.trigger.data.content_type.id}"
+          },
+          "value" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.http-client-9.response.body.sys.version"
+          }
+        }
+      },
+      "object-helpers-6" : {
+        "title" : "Remove ID prop",
+        "connector" : {
+          "name" : "object-helpers",
+          "version" : "4.0"
+        },
+        "operation" : "pick_values_by_keys",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "result" : {
+              "type" : "object",
+              "properties" : {
+                "fields" : {
+                  "type" : "null"
+                },
+                "description" : {
+                  "type" : "null"
+                },
+                "name" : {
+                  "type" : "null"
+                },
+                "displayField" : {
+                  "type" : "null"
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "source" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.trigger.data.current[0]"
+          },
+          "keys_to_pick" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "string",
+              "value" : "fields"
+            }, {
+              "type" : "string",
+              "value" : "description"
+            }, {
+              "type" : "string",
+              "value" : "name"
+            }, {
+              "type" : "string",
+              "value" : "displayField"
+            } ]
+          }
+        }
+      },
+      "storage-7" : {
+        "title" : "Set updates",
+        "description" : "Set our omitted field",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "set",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "field_updates_{$.steps.trigger.data.content_type.id}"
+          },
+          "value" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-1.result"
+          }
+        }
+      },
+      "http-client-1" : {
+        "title" : "Update Content Type",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "put_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-iinfo" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "set-cookie" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-cdn" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "publishedAt" : {
+                          "type" : "string"
+                        },
+                        "publishedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "space" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "publishedVersion" : {
+                          "type" : "number"
+                        },
+                        "publishedCounter" : {
+                          "type" : "number"
+                        },
+                        "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "firstPublishedAt" : {
+                          "type" : "string"
+                        },
+                        "updatedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "environment" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "id" : {
+                                  "type" : "string"
+                                },
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "version" : {
+                          "type" : "number"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        },
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "createdAt" : {
+                          "type" : "string"
+                        },
+                        "createdBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  },
+                                  "required" : [ "linkContentType" ]
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                },
+                                "in" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "required" : [ ]
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted", "items" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+          "title" : "Property Mapping Demo Instance",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "body" : {
+            "type" : "object",
+            "value" : {
+              "raw" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.trigger.data.new"
+              }
+            }
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "value" : {
+                  "type" : "string",
+                  "value" : "application/vnd.contentful.management.v1+json"
+                },
+                "key" : {
+                  "type" : "string",
+                  "value" : "Content-Type"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.storage-5.value"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types/{$.steps.trigger.data.content_type.id}"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "http-client-6" : {
+        "title" : "Activate Content Type",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "put_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-iinfo" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "set-cookie" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-cdn" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "publishedAt" : {
+                          "type" : "string"
+                        },
+                        "publishedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "space" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "publishedVersion" : {
+                          "type" : "number"
+                        },
+                        "publishedCounter" : {
+                          "type" : "number"
+                        },
+                        "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "firstPublishedAt" : {
+                          "type" : "string"
+                        },
+                        "updatedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "environment" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "id" : {
+                                  "type" : "string"
+                                },
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "version" : {
+                          "type" : "number"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        },
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "createdAt" : {
+                          "type" : "string"
+                        },
+                        "createdBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "linkType" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                },
+                                "linkContentType" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                },
+                                "in" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "required" : [ ]
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+          "title" : "Property Mapping Demo Instance",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "body" : {
+            "type" : "object",
+            "value" : { }
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.http-client-7.response.body.sys.version"
+                },
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types/{$.steps.trigger.data.content_type.id}/published"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "storage-6" : {
+        "title" : "Get updates",
+        "description" : "First we assume there's no updates via the default object, we change this if we have them.",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "default_value" : {
+            "type" : "object",
+            "value" : {
+              "updates" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.trigger.data.new"
+              },
+              "omits" : {
+                "type" : "array",
+                "value" : [ ]
+              }
+            }
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "field_updates_{$.steps.trigger.data.content_type.id}"
+          }
+        }
+      },
+      "http-client-9" : {
+        "title" : "Activate Content Type",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "put_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-iinfo" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "set-cookie" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "string"
+                      }
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-cdn" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "space" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "publishedCounter" : {
+                          "type" : "number"
+                        },
+                        "updatedAt" : {
+                          "type" : "string"
+                        },
+                        "updatedBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "environment" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "id" : {
+                                  "type" : "string"
+                                },
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "version" : {
+                          "type" : "number"
+                        },
+                        "type" : {
+                          "type" : "string"
+                        },
+                        "id" : {
+                          "type" : "string"
+                        },
+                        "createdAt" : {
+                          "type" : "string"
+                        },
+                        "createdBy" : {
+                          "type" : "object",
+                          "properties" : {
+                            "sys" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                },
+                                "id" : {
+                                  "type" : "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                }
+                              }
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "1cd7b86a-157b-4a11-9a05-a0d5e6353c73",
+          "title" : "Property Mapping Demo Instance",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "body" : {
+            "type" : "object",
+            "value" : { }
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.http-client-8.response.body.sys.version"
+                },
+                "key" : {
+                  "type" : "string",
+                  "value" : "X-Contentful-Version"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/content_types/{$.steps.trigger.data.content_type.id}/published"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "boolean-condition-3" : {
+        "title" : "Has omits?",
+        "description" : "If there were existing field changes we need to first omit the existing fields.",
+        "connector" : {
+          "name" : "boolean-condition",
+          "version" : "2.3"
+        },
+        "operation" : "boolean_condition",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "conditions" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "value1" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.storage-8.value.omits"
+                },
+                "comparison_type" : {
+                  "type" : "string",
+                  "value" : "!=="
+                },
+                "value2" : {
+                  "type" : "array",
+                  "value" : [ ]
+                }
+              }
+            } ]
+          },
+          "strictness" : {
+            "type" : "string",
+            "value" : "All"
+          }
+        }
+      },
+      "trigger" : {
+        "title" : "Callable Trigger",
+        "connector" : {
+          "name" : "callable-trigger",
+          "version" : "2.0"
+        },
+        "operation" : "trigger_and_respond",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "#calling_execution" : {
+              "type" : "string"
+            },
+            "#calling_workflow" : {
+              "type" : "string"
+            },
+            "data" : {
+              "type" : "object",
+              "properties" : {
+                "current" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "sys" : {
+                        "type" : "object",
+                        "properties" : {
+                          "publishedAt" : {
+                            "type" : "string"
+                          },
+                          "publishedBy" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sys" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "type" : {
+                                    "type" : "string"
+                                  },
+                                  "linkType" : {
+                                    "type" : "string"
+                                  },
+                                  "id" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "space" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sys" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "type" : {
+                                    "type" : "string"
+                                  },
+                                  "linkType" : {
+                                    "type" : "string"
+                                  },
+                                  "id" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "publishedVersion" : {
+                            "type" : "number"
+                          },
+                          "publishedCounter" : {
+                            "type" : "number"
+                          },
+                          "updatedAt" : {
+                            "type" : "string"
+                          },
+                          "firstPublishedAt" : {
+                            "type" : "string"
+                          },
+                          "updatedBy" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sys" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "type" : {
+                                    "type" : "string"
+                                  },
+                                  "linkType" : {
+                                    "type" : "string"
+                                  },
+                                  "id" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "environment" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sys" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "id" : {
+                                    "type" : "string"
+                                  },
+                                  "type" : {
+                                    "type" : "string"
+                                  },
+                                  "linkType" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "version" : {
+                            "type" : "number"
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "createdAt" : {
+                            "type" : "string"
+                          },
+                          "createdBy" : {
+                            "type" : "object",
+                            "properties" : {
+                              "sys" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "type" : {
+                                    "type" : "string"
+                                  },
+                                  "linkType" : {
+                                    "type" : "string"
+                                  },
+                                  "id" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "displayField" : {
+                        "type" : "string"
+                      },
+                      "name" : {
+                        "type" : "string"
+                      },
+                      "description" : {
+                        "type" : "string"
+                      },
+                      "fields" : {
+                        "type" : "array",
+                        "items" : {
+                          "type" : "object",
+                          "properties" : {
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "type" : {
+                                  "type" : "string"
+                                },
+                                "validations" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "linkContentType" : {
+                                        "type" : "array",
+                                        "items" : {
+                                          "type" : "string"
+                                        }
+                                      }
+                                    },
+                                    "required" : [ "linkContentType" ]
+                                  }
+                                },
+                                "linkType" : {
+                                  "type" : "string"
+                                }
+                              }
+                            },
+                            "omitted" : {
+                              "type" : "boolean"
+                            },
+                            "name" : {
+                              "type" : "string"
+                            },
+                            "validations" : {
+                              "type" : "array",
+                              "items" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "unique" : {
+                                    "type" : "boolean"
+                                  },
+                                  "in" : {
+                                    "type" : "array",
+                                    "items" : {
+                                      "type" : "string"
+                                    }
+                                  }
+                                },
+                                "required" : [ ]
+                              }
+                            },
+                            "type" : {
+                              "type" : "string"
+                            },
+                            "id" : {
+                              "type" : "string"
+                            },
+                            "localized" : {
+                              "type" : "boolean"
+                            },
+                            "disabled" : {
+                              "type" : "boolean"
+                            },
+                            "required" : {
+                              "type" : "boolean"
+                            }
+                          },
+                          "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted", "items" ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "new" : {
+                  "type" : "object",
+                  "properties" : {
+                    "fields" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "validations" : {
+                                "type" : "array",
+                                "items" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkContentType" : {
+                                      "type" : "array",
+                                      "items" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  },
+                                  "required" : [ "linkContentType" ]
+                                }
+                              },
+                              "linkType" : {
+                                "type" : "string"
+                              }
+                            }
+                          },
+                          "omitted" : {
+                            "type" : "boolean"
+                          },
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "validations" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "unique" : {
+                                  "type" : "boolean"
+                                },
+                                "in" : {
+                                  "type" : "array",
+                                  "items" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "required" : [ ]
+                            }
+                          },
+                          "type" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "localized" : {
+                            "type" : "boolean"
+                          },
+                          "disabled" : {
+                            "type" : "boolean"
+                          },
+                          "required" : {
+                            "type" : "boolean"
+                          }
+                        },
+                        "required" : [ "id", "name", "type", "localized", "required", "validations", "disabled", "omitted", "items" ]
+                      }
+                    },
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "displayField" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "content_type" : {
+                  "type" : "object",
+                  "properties" : {
+                    "id" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              }
+            },
+            "#calling_execution_log_url" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : { }
+      }
+    },
+    "dependencies" : [ ]
+  } ]
+}
