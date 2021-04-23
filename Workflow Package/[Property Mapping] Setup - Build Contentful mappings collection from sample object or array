@@ -1,0 +1,162 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "a6ad95a4-d4d9-4761-8fd6-f31737821e50",
+    "created" : "2021-03-02T01:12:03.128Z",
+    "workspace_id" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "c345334f-6f6e-4077-ad64-c0945aecb0d1",
+      "created" : "2021-03-02T01:33:40.476Z"
+    },
+    "title" : "[Property Mapping] Setup - Build Contentful mappings collection from sample object or array",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : {
+        "type" : "object",
+        "properties" : {
+          "sample" : {
+            "title" : "Sample Object/Array",
+            "description" : "You can choose whether to use an array of your props or an object form your system.",
+            "oneOf" : [ {
+              "title" : "Sample object",
+              "description" : "Note that we don't map nested properties from objects. Only parent props will be returned.",
+              "type" : "object",
+              "properties" : {
+                "property" : {
+                  "type" : "string",
+                  "title" : "Your property name"
+                }
+              },
+              "additionalProperties" : false,
+              "required" : [ ],
+              "advanced" : [ ]
+            }, {
+              "title" : "Array of prop names",
+              "type" : "array",
+              "items" : {
+                "type" : "string",
+                "title" : "Property",
+                "description" : "Only strings"
+              },
+              "additionalItems" : true
+            } ]
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ "sample" ],
+        "advanced" : [ ]
+      },
+      "output_schema" : {
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "title" : "Property collection",
+            "description" : "pass this to \"[Property Mapping Callable] Setup - Add source system, object, & properties in Contentful\"",
+            "type" : "array",
+            "items" : {
+              "title" : "Item",
+              "type" : "object",
+              "properties" : {
+                "name" : {
+                  "type" : "string",
+                  "title" : "Name"
+                }
+              },
+              "additionalProperties" : false,
+              "required" : [ ],
+              "advanced" : [ ]
+            },
+            "additionalItems" : true
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ ],
+        "advanced" : [ ]
+      }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "callable-workflow-response-1",
+      "type" : "normal",
+      "content" : { }
+    } ],
+    "steps" : {
+      "trigger" : {
+        "title" : "Callable Trigger",
+        "connector" : {
+          "name" : "callable-trigger",
+          "version" : "2.0"
+        },
+        "operation" : "trigger_and_respond",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      },
+      "script-1" : {
+        "title" : "Setup collection",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "sample"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.trigger.data.sample"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  if(Array.isArray(input.sample)==true){\n    var result = input.sample.map(field=>{\n      return { name: field }\n    });\n  } else {\n    var result = Object.keys(input.sample).map(field=>{\n      return { name: field }\n    });\n  }\n  return result\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "callable-workflow-response-1" : {
+        "title" : "Callable response",
+        "connector" : {
+          "name" : "callable-workflow-response",
+          "version" : "1.0"
+        },
+        "operation" : "response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "response" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-1.result"
+          }
+        }
+      }
+    },
+    "dependencies" : [ ]
+  } ]
+}
