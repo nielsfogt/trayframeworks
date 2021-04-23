@@ -1,0 +1,493 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "fcbf94e2-7309-4c64-93f6-e6ee1bb29c25",
+    "created" : "2021-04-02T19:35:40.560Z",
+    "workspace_id" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "6727b037-ee6e-42a5-a6df-5f6e6b0af1fd",
+      "created" : "2021-04-05T17:06:50.706Z"
+    },
+    "title" : "[Growth] Migration - Add property mappings to new CMS instance",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : { },
+      "output_schema" : { }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "call-workflow-2",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "loop-1",
+      "type" : "loop",
+      "content" : {
+        "_loop" : [ {
+          "name" : "script-2",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "boolean-condition-1",
+          "type" : "branch",
+          "content" : {
+            "true" : [ {
+              "name" : "storage-1",
+              "type" : "normal",
+              "content" : { }
+            }, {
+              "name" : "call-workflow-1",
+              "type" : "normal",
+              "content" : { }
+            } ],
+            "false" : [ ]
+          }
+        } ]
+      }
+    } ],
+    "steps" : {
+      "script-1" : {
+        "title" : "Get prod mapping list",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "result" : {
+              "type" : "object",
+              "properties" : {
+                "map" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "array"
+                  }
+                },
+                "ref" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "system" : {
+                        "type" : "object",
+                        "properties" : {
+                          "systemName" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          }
+                        }
+                      },
+                      "property" : {
+                        "type" : "object",
+                        "properties" : {
+                          "systemName" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "canonicalPropertyMapping" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "sys" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkType" : {
+                                      "type" : "string"
+                                    },
+                                    "id" : {
+                                      "type" : "string"
+                                    },
+                                    "type" : {
+                                      "type" : "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "required" : [ "sys" ]
+                            }
+                          },
+                          "updateExcludedSystems" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "sys" : {
+                                  "type" : "object",
+                                  "properties" : {
+                                    "linkType" : {
+                                      "type" : "string"
+                                    },
+                                    "id" : {
+                                      "type" : "string"
+                                    },
+                                    "type" : {
+                                      "type" : "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "object" : {
+                        "type" : "object",
+                        "properties" : {
+                          "systemName" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          }
+                        }
+                      }
+                    },
+                    "required" : [ "system", "property", "object" ]
+                  }
+                }
+              }
+            },
+            "console" : {
+              "type" : "array",
+              "items" : { }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "foo"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "bar"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n \nvar map= [\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"FirstName\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"FirstName\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_first_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"first_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"first_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"first_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"name.givenName\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_last_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"name.familyName\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LastName\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LastName\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"last_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"last_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"last_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"form_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"phone\",\n\t\t\t\t\"default_value\": \"null\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Form_Phone_Number__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_job_title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"jobtitle\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"employment.title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Title\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_website\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"domain\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"domain\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"domain\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"domain\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Website\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Website\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"account\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit_Reveal\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"result\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit_Reveal\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"metrics.employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"result\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"metrics.employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_num_employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"num_employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo_Websights\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"employees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"NumberOfEmployees\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Marketo_Munchkin_Tracking_Cookie__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Marketo_Munchkin_Tracking_Cookie__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"munchkin_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"munchkin_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Lead_Source_Detail__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Lead_Detail__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"offer_type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"offer_type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_campaign__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_campaign__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_campaign\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_campaign\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_medium__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_medium__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_medium\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_medium\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_source__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_source__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_source\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_source\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_term__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_term__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_term\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_term\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_content__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"utm_content__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"CampaignId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"campaign_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"campaign_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"referrer\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"referrer\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": 250,\n\t\t\t\t\"property\": \"mkto71_Original_Referrer__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"GA_ID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"GA_ID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ga_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ga_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"anonymousId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"anonymousId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"intercomId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"intercomId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"formId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"formId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"clearbit_form_status\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"clearbit_form_status\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_company_name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"name\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Name\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"account\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"company\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"company\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Company\",\n\t\t\t\t\"default_value\": \"[[Unknown]]\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"OwnerId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"OwnerId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"outreach_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Outreach_ID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Outreach_ID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_record_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ContactId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"campaign_member\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadGenius_Industry__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"category.industry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_industry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"industry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"industry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Industry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"companyprimaryindustry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Industry__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Industry__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"status\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Account_Status__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"account\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Company_Size__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Company_Size__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"account\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"sales_segment\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"lead_date\",\n\t\t\t\t\"default_value\": \"{{current_date}}\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Lead_Date2__c\",\n\t\t\t\t\"default_value\": \"{{current_date}}\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Lead_Date2__c\",\n\t\t\t\t\"default_value\": \"{{current_date}}\",\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Routing_Country__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"geo.country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit_Reveal\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"person.country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"result\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Country__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"sent_to_manual_enrichment_date\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Sent_to_Manual_Enrichment_Date__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Sent_to_Manual_Enrichment_Date__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"leadgenius_company_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadGenius_Company_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadGenius_Company_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_phone_number\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"leadgenius_person_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadGenius_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LeadGenius_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"zoominfo_person_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"companyphone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"zoominfo_company_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Company_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ZoomInfo_Company_Phone__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"clearbit_person_phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Phone\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"clearbit_company_phoneNumbers\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"site.phoneNumbers\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"CB_Company_Phone_Numbers__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"CB_Company_Phone_Numbers__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"all_phone_numbers\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"All_Phone_Numbers__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"All_Phone_Numbers__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_linkedin_url\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LinkedIn_URL__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin.handle\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"city\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_city\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"company_linkedin\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_linkedin_url\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_linkedin_url\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LinkedIn_URL__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin.handle\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"contact_linkedin_url\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"LinkedIn_URL__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"linkedin.handle\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"street\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_street\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"zip_code\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_zip_code\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"state\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"LeadGenius\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"org_state\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"results\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"GCLID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"GCLID__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"gclid\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"gclid\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"attribution\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"ProfileId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"user\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"profile_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"active\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"IsActive\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"user\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Clearbit_Role__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Clearbit_Role__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"role\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"role\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"department_group\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Department_Group__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Department_Group__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Zoominfo_Department__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Zoominfo_Department__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"user\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"email\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"user_team\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"User_Team__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"user\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"role_id\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"owner\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"UserRoleId\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"user\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"object_type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Intercom\",\n\t\t\t\t\t\t\"id\": \"1UwxplqTxJbRceYCeLTzQH\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"object_type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Intercom\",\n\t\t\t\t\t\t\"id\": \"1UwxplqTxJbRceYCeLTzQH\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"ZoomInfo\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"companycountry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"response\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit_Reveal\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"company.country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"result\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"BillingCountry\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"account\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Clearbit\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"geo.country\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Type\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"account\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Industry_Score__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Industry_Score__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"industry_score\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"company\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"mql_date\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"MQL_Date__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"MQL_Date__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"mql_date_2\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"MQL_Date_2__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"MQL_Date_2__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Growth Ops\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"seniority_hierarchy\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"person\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Seniority_Hierarchy__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"contact\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"Seniority_Hierarchy__c\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"name\": \"Salesforce\",\n\t\t\t\t\t\t\"id\": \"3bVVJgmZM8JqvZjJvlQUdM\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"object\": \"lead\"\n\t\t\t}\n\t\t],\n\t\t[\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"AnnualRevenue\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"lead\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Salesforce\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"AnnualRevenue\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"account\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"system\": \"Tray Forms\",\n\t\t\t\t\"character_limit\": null,\n\t\t\t\t\"property\": \"revenue\",\n\t\t\t\t\"default_value\": null,\n\t\t\t\t\"sys_update_exclude\": null,\n\t\t\t\t\"object\": \"values\"\n\t\t\t}\n\t\t]\n\t]\n\n  return {map:map  }\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "call-workflow-2" : {
+        "title" : "Get new sys refs",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "aa660fcc-ffda-4ac1-a608-37d45284fc41"
+          },
+          "trigger_input" : {
+            "type" : "object",
+            "value" : {
+              "bla" : {
+                "type" : "string",
+                "value" : ""
+              }
+            }
+          }
+        }
+      },
+      "call-workflow-1" : {
+        "title" : "Call Workflow",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : { },
+        "error_handling" : {
+          "strategy" : "automatic"
+        },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "efe90b96-ec18-4bf4-bd2a-ae8b39eef704"
+          },
+          "trigger_input" : {
+            "type" : "object",
+            "value" : {
+              "entry" : {
+                "value" : {
+                  "id" : {
+                    "type" : "jsonpath",
+                    "value" : "$.steps.script-2.result.update"
+                  },
+                  "patches" : {
+                    "type" : "array",
+                    "value" : [ {
+                      "type" : "object",
+                      "value" : {
+                        "op" : {
+                          "type" : "string",
+                          "value" : "add"
+                        },
+                        "path" : {
+                          "type" : "string",
+                          "value" : "/fields/canonicalPropertyMapping"
+                        },
+                        "value" : {
+                          "type" : "jsonpath",
+                          "value" : "$.steps.storage-1.value"
+                        }
+                      }
+                    } ]
+                  }
+                },
+                "type" : "object"
+              }
+            }
+          }
+        }
+      },
+      "loop-1" : {
+        "title" : "Loop",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "array"
+            },
+            "count" : {
+              "type" : "number"
+            },
+            "index" : {
+              "type" : "number"
+            },
+            "is_first" : {
+              "type" : "boolean"
+            },
+            "is_last" : {
+              "type" : "boolean"
+            },
+            "branch_name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-1.result.map"
+          }
+        }
+      },
+      "boolean-condition-1" : {
+        "title" : "Boolean Condition",
+        "connector" : {
+          "name" : "boolean-condition",
+          "version" : "2.3"
+        },
+        "operation" : "boolean_condition",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "conditions" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "value1" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.script-2.result.update"
+                },
+                "comparison_type" : {
+                  "type" : "string",
+                  "value" : "!=="
+                },
+                "value2" : {
+                  "type" : "null",
+                  "value" : null
+                }
+              }
+            } ]
+          },
+          "strictness" : {
+            "type" : "string",
+            "value" : "All"
+          }
+        }
+      },
+      "storage-1" : {
+        "title" : "Data Storage",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "default_value" : {
+            "type" : "object",
+            "value" : {
+              "en-US" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.script-2.result.refs"
+              }
+            }
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "s"
+          }
+        }
+      },
+      "script-2" : {
+        "title" : "Javascript",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "result" : {
+              "type" : "object",
+              "properties" : {
+                "update" : {
+                  "type" : "string"
+                },
+                "refs" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "sys" : {
+                        "type" : "object",
+                        "properties" : {
+                          "linkType" : {
+                            "type" : "string"
+                          },
+                          "id" : {
+                            "type" : "string"
+                          },
+                          "type" : {
+                            "type" : "string"
+                          }
+                        }
+                      }
+                    },
+                    "required" : [ "sys" ]
+                  }
+                }
+              }
+            },
+            "console" : {
+              "type" : "array",
+              "items" : { }
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "group"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.loop-1.value"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "refs"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.call-workflow-2.response"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  // Take our prod mapping list and inject reference objects to our new CMS.\n\tvar list = input.group.map(item=>{\n\t\tvar match = input.refs.filter(ref=>{\n\t\t\treturn ref.system.friendlyName==item.system && ref.object.systemName==item.object && ref.property.systemName==item.property\n   \t})\n\t\tif(match){ item.ref=match[0] }\n\t\treturn item\n\t})\n\n\tvar result = {\n\t\tupdate: null,\n\t\trefs: []\n\t}\n  // Add entry references array to the canonical property so we can patch it.\n  list.forEach(item=>{\n    if(item.system==\"Growth Ops\"){\n      result.update = item.ref.property.id\n    } else if(item.ref){\n      result.refs.push({\n        \"sys\": {\n          \"linkType\": \"Entry\",\n          \"id\": item.ref.property.id,\n          \"type\": \"Link\"\n        }\n      })\n    }\n\n  })\n\treturn result;\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "trigger" : {
+        "title" : "Manual Trigger",
+        "connector" : {
+          "name" : "noop",
+          "version" : "1.0"
+        },
+        "operation" : "trigger",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      }
+    },
+    "dependencies" : [ {
+      "id" : "aa660fcc-ffda-4ac1-a608-37d45284fc41",
+      "name" : "[Property Mapping] Migration - Build new system entry array"
+    }, {
+      "id" : "efe90b96-ec18-4bf4-bd2a-ae8b39eef704",
+      "name" : "[Contentful] Entries - Patch and publish entry 1.0"
+    } ]
+  } ]
+}
