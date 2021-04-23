@@ -8,8 +8,8 @@
     "workspace_id" : "12c61eef-8d88-4281-921d-3b7db6b01106",
     "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
     "version" : {
-      "id" : "6d928830-534f-4fc4-aef5-02b3ebcb7a60",
-      "created" : "2021-04-13T01:37:50.357Z"
+      "id" : "ca532959-6e87-4e77-bb55-e8b5126e50cf",
+      "created" : "2021-04-23T03:33:13.384Z"
     },
     "title" : "[Property Mapping] Build - Rebuild mappings list 1.0",
     "enabled" : true,
@@ -195,7 +195,7 @@
           },
           "key" : {
             "type" : "string",
-            "value" : "mapping_list"
+            "value" : "mapping_list_{$.steps.http-client-6.response.body.items[0].sys.id}"
           },
           "value" : {
             "type" : "jsonpath",
