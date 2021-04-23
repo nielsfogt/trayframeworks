@@ -8,8 +8,8 @@
     "workspace_id" : "12c61eef-8d88-4281-921d-3b7db6b01106",
     "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
     "version" : {
-      "id" : "6205ed29-3fc8-4ecf-86c5-66aea90ac62c",
-      "created" : "2021-04-13T13:10:10.704Z"
+      "id" : "ce1e60ff-d2bf-4afd-a316-2f03d95d737e",
+      "created" : "2021-04-23T03:43:07.990Z"
     },
     "title" : "[Property Mapping] Callable - Map objects 1.0",
     "enabled" : true,
@@ -268,30 +268,6 @@
         "error_handling" : { },
         "properties" : { }
       },
-      "storage-1" : {
-        "title" : "Get mappings",
-        "connector" : {
-          "name" : "storage",
-          "version" : "1.3"
-        },
-        "operation" : "get",
-        "output_schema" : { },
-        "error_handling" : { },
-        "properties" : {
-          "scope" : {
-            "type" : "string",
-            "value" : "Current Run"
-          },
-          "default_value" : {
-            "type" : "null",
-            "value" : null
-          },
-          "key" : {
-            "type" : "string",
-            "value" : "growth_ops_mappings_{$.steps.trigger.data.mapping_instance}"
-          }
-        }
-      },
       "script-2" : {
         "title" : "Mapping script",
         "connector" : {
@@ -461,6 +437,31 @@
           "file_output" : {
             "type" : "boolean",
             "value" : false
+          }
+        }
+      },
+      "storage-1" : {
+        "title" : "FIX ME! Get mappings",
+        "description" : "You need to change the scope of this step to account once this WF is in the workspace you'll use it in.",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.3"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "default_value" : {
+            "type" : "null",
+            "value" : null
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "growth_ops_mappings_{$.steps.trigger.data.mapping_instance}"
           }
         }
       }
