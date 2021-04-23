@@ -1,0 +1,247 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "d624b46b-5f98-49d2-a8e2-1b79c792c9c3",
+    "created" : "2021-04-15T16:10:48.996Z",
+    "workspace_id" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "470d46e0-6520-4db7-9606-555a0b8477eb",
+      "created" : "2021-04-15T16:21:20.887Z"
+    },
+    "title" : "[Testing][Property Mapping] CMS Setup - Create Source System, Source Object, and Property entries from example object",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : { },
+      "output_schema" : { }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-5",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "loop-1",
+      "type" : "loop",
+      "content" : {
+        "_loop" : [ {
+          "name" : "loop-2",
+          "type" : "loop",
+          "content" : {
+            "_loop" : [ {
+              "name" : "call-workflow-2",
+              "type" : "normal",
+              "content" : { }
+            } ]
+          }
+        } ]
+      }
+    } ],
+    "steps" : {
+      "call-workflow-2" : {
+        "title" : "FIX ME: Create source system/object/prop",
+        "description" : "Each time you setup a new system and object, you need to update the system and object names!",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "8ee960e6-026a-48b6-8fd6-4305c7b6a107"
+          },
+          "trigger_input" : {
+            "value" : {
+              "system_create" : {
+                "type" : "boolean",
+                "value" : "true"
+              },
+              "object_create" : {
+                "type" : "boolean",
+                "value" : "true"
+              },
+              "properties" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.loop-2.value.sample"
+              },
+              "System" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.loop-1.value.system"
+              },
+              "object" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.loop-2.value.name"
+              }
+            },
+            "type" : "object"
+          }
+        }
+      },
+      "loop-1" : {
+        "title" : "Loop",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "object",
+              "properties" : {
+                "system" : {
+                  "type" : "string"
+                },
+                "objects" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "name" : {
+                        "type" : "string"
+                      },
+                      "sample" : {
+                        "type" : "object",
+                        "properties" : {
+                          "first_name" : {
+                            "type" : "null"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "count" : {
+              "type" : "number"
+            },
+            "index" : {
+              "type" : "number"
+            },
+            "is_first" : {
+              "type" : "boolean"
+            },
+            "is_last" : {
+              "type" : "boolean"
+            },
+            "branch_name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-5.result"
+          }
+        }
+      },
+      "loop-2" : {
+        "title" : "Loop",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : "object",
+              "properties" : {
+                "name" : {
+                  "type" : "string"
+                },
+                "sample" : {
+                  "type" : "object",
+                  "properties" : {
+                    "first_name" : {
+                      "type" : "null"
+                    }
+                  }
+                }
+              }
+            },
+            "count" : {
+              "type" : "number"
+            },
+            "index" : {
+              "type" : "number"
+            },
+            "is_first" : {
+              "type" : "boolean"
+            },
+            "is_last" : {
+              "type" : "boolean"
+            },
+            "branch_name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.loop-1.value.objects"
+          }
+        }
+      },
+      "script-5" : {
+        "title" : "Put example object here",
+        "description" : "Add your sample object to the script and run a test to make sure you don't have a syntax error in logs",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n\treturn [\n  {\n\t\tsystem: \"Growth Ops\",\n\t\tobjects: [{\n\t\t\tname: \"Person\",\n\t\t\tsample: {\n\t\t\t\tfirst_name: null\n\t\t\t}\n\t\t}]\n\t},\n\t{\n\t\tsystem: \"Saleforce\",\n\t\tobjects: [{\n\t\t\tname: \"Lead\",\n\t\t\tsample: {\n\t\t\t\tfirstName: null\n\t\t\t}\n\t\t}]\n\t}\n]\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "trigger" : {
+        "title" : "Manual Trigger",
+        "connector" : {
+          "name" : "noop",
+          "version" : "1.0"
+        },
+        "operation" : "trigger",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      }
+    },
+    "dependencies" : [ {
+      "id" : "8ee960e6-026a-48b6-8fd6-4305c7b6a107",
+      "name" : "[Property Mapping] CMS Setup - Add a source system object & properties in Contentful 1.0"
+    } ]
+  } ]
+}
