@@ -1,0 +1,863 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "ea88e632-dd2f-4543-b12e-4812074879ee",
+    "created" : "2021-04-14T00:58:05.868Z",
+    "workspace_id" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "95a19b89-e754-4e05-b2b9-d37274b401c2",
+      "created" : "2021-04-14T01:00:09.124Z"
+    },
+    "title" : "[Property Mapping] Callable Setup - Configure template JSON",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : {
+        "canonical_system_entry_id" : "dfc6d85cdb2d4e0d",
+        "full_rebuild" : false
+      },
+      "input_schema" : { },
+      "output_schema" : { }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "http-client-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "list-helpers-8",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "loop-3",
+      "type" : "loop",
+      "content" : {
+        "_loop" : [ {
+          "name" : "loop-4",
+          "type" : "loop",
+          "content" : {
+            "_loop" : [ {
+              "name" : "call-workflow-2",
+              "type" : "normal",
+              "content" : { }
+            }, {
+              "name" : "script-1",
+              "type" : "normal",
+              "content" : { }
+            }, {
+              "name" : "storage-5",
+              "type" : "normal",
+              "content" : { }
+            } ]
+          }
+        } ]
+      }
+    }, {
+      "name" : "storage-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-3",
+      "type" : "normal",
+      "content" : { }
+    } ],
+    "steps" : {
+      "script-1" : {
+        "title" : "Prep system data",
+        "description" : "Removes non-required props and builds property objects",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "sys_json"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.call-workflow-2.response.sys_json"
+                }
+              }
+            }, {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "canonical_prop_ids"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.script-2.result"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n  input.sys_json.objects.forEach((object, i) => {\n    input.sys_json.objects[i].properties = input.sys_json.objects[i].properties.filter(property => input.canonical_prop_ids.includes(property.id))\n  })\n    var result = []\n    input.sys_json.objects.forEach(object=>{\n      object.properties.forEach(property=>{\n        delete object.properties\n        result.push({\n          system: input.sys_json.system,\n          object: object,\n          property: property\n        })\n      })\n    });\n    return result\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "loop-3" : {
+        "title" : "Loop Batches",
+        "description" : "Prob not necessary, but this will prevent the crazy power user edge case w/ 100+ systems",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "type" : "object",
+          "$schema" : "http://json-schema.org/draft-03/schema",
+          "id" : "http://jsonschema.net",
+          "required" : true,
+          "additionalProperties" : false,
+          "properties" : {
+            "value" : {
+              "type" : [ "string", "boolean", "null", "object", "number", "array" ],
+              "title" : "Item"
+            },
+            "count" : {
+              "type" : "number",
+              "id" : "http://jsonschema.net/total"
+            },
+            "index" : {
+              "type" : "number",
+              "id" : "http://jsonschema.net/index"
+            },
+            "is_first" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_first"
+            },
+            "is_last" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_last"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.list-helpers-8.result"
+          }
+        }
+      },
+      "storage-5" : {
+        "title" : "Store system data",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "append_to_list",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "systems"
+          },
+          "value" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-1.result"
+          },
+          "create_if_missing" : {
+            "type" : "boolean",
+            "value" : true
+          }
+        }
+      },
+      "script-3" : {
+        "title" : "Configure template",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "name" : {
+                  "type" : "string",
+                  "value" : "systems"
+                },
+                "value" : {
+                  "type" : "jsonpath",
+                  "value" : "$.steps.storage-1.value"
+                }
+              }
+            } ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n\t// Use this array to quickly find system data for an exclusion\n  var systems = []\n  systems.push(input.canonical_system.system)\n  input.systems.forEach(sys=>systems.push(sys.system))\n\n  // Builds a mapping object for a mapping group using the property's system, object, and attributes data\n  function buildPropObject(map){\n    // Attributes that need custom logic to handle or shouldn't be included in the mapping object\n    var excluded_properties = [\n      'updateExcludedSystems',\n      'canonicalPropertyMapping',\n      'systemName'\n    ]\n    var prop_obj = {}\n    Object.keys(map.property).forEach(attribute=>{\n      // Only add props we want to include\n      if(excluded_properties.includes(attribute)==false){\n        prop_obj[attribute] = map.property[attribute]\n      // Else if's handle the custom logic\n      } else if(attribute == 'systemName'){\n        prop_obj.property = map.property[attribute]\n      } else if(attribute == 'updateExcludedSystems'){\n        prop_obj.sys_update_exclude = []\n        map.property.updateExcludedSystems.forEach(exclusion=>{\n          var excl_sys = systems.filter(sys=>sys.id==exclusion.sys.id)[0]\n          prop_obj.sys_update_exclude.push({\n            name:excl_sys.systemName,\n            id: excl_sys.id\n          })\n        })\n      }\n    })\n    prop_obj.system = map.system.friendlyName\n    prop_obj.object = map.object.systemName\n    return prop_obj\n  }\n  var result = []\n  input.canonical_system.objects.forEach(object=>{\n    object.properties.forEach(property=>{\n      var mappingGroup = []\n      if(property.canonicalPropertyMapping){\n\t\t\t\t// If there's a single mapping this forces object into an array.\n\t\t\t\tif(property.canonicalPropertyMapping.sys.id){\n\t\t\t\t\tproperty.canonicalPropertyMapping = [property.canonicalPropertyMapping]\n\t\t\t\t}\n          if(property.canonicalPropertyMapping.length > 0){\n              mappingGroup.push(\n                buildPropObject({\n                  object:object,\n                  system: input.canonical_system.system,\n                  property: property\n                })\n              )\n              property.canonicalPropertyMapping.forEach(mapping=>{\n                  var map = input.systems.filter(sys_prop=>sys_prop.property.id == mapping.sys.id)[0]\n                  mappingGroup.push(buildPropObject(map))\n            })\n        }\n      }\n      if(mappingGroup.length > 0){\n        result.push(mappingGroup)\n      }\n    })\n  })\n  return result\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "call-workflow-2" : {
+        "title" : "Get System JSON",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "sys_json" : {
+                  "type" : "object",
+                  "properties" : {
+                    "system" : {
+                      "type" : "string"
+                    },
+                    "objects" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : {
+                            "type" : "string"
+                          },
+                          "properties" : {
+                            "type" : "array",
+                            "items" : {
+                              "type" : "object",
+                              "properties" : {
+                                "cms_id" : {
+                                  "type" : "string"
+                                },
+                                "systemName" : {
+                                  "type" : "string"
+                                }
+                              },
+                              "required" : [ "cms_id", "systemName" ]
+                            }
+                          }
+                        },
+                        "required" : [ "name", "properties" ]
+                      }
+                    },
+                    "canonicalSystem" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              }
+            },
+            "#organization_uuid" : {
+              "type" : "string"
+            },
+            "#workspace_id_hash" : {
+              "type" : "string"
+            },
+            "#execution_uuid" : {
+              "type" : "string"
+            },
+            "#execution_log_url" : {
+              "type" : "string"
+            },
+            "#execution_start_time" : {
+              "type" : "string"
+            },
+            "#username_hash" : {
+              "type" : "string"
+            },
+            "#workflow_uuid" : {
+              "type" : "string"
+            },
+            "#workflow_title" : {
+              "type" : "string"
+            },
+            "#datapot_id_hash" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "4f57612d-a77e-4bfe-a785-a599445c29a4"
+          },
+          "trigger_input" : {
+            "type" : "object",
+            "value" : {
+              "sys_entry" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.loop-4.value"
+              }
+            }
+          }
+        }
+      },
+      "http-client-1" : {
+        "title" : "Get source systems",
+        "connector" : {
+          "name" : "http-client",
+          "version" : "5.1"
+        },
+        "operation" : "get_request",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "response" : {
+              "type" : "object",
+              "properties" : {
+                "status_code" : {
+                  "type" : "number"
+                },
+                "headers" : {
+                  "type" : "object",
+                  "properties" : {
+                    "x-contentful-ratelimit-second-remaining" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-origin" : {
+                      "type" : "string"
+                    },
+                    "server" : {
+                      "type" : "string"
+                    },
+                    "contentful-upstream" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-second-limit" : {
+                      "type" : "string"
+                    },
+                    "strict-transport-security" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-reset" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-headers" : {
+                      "type" : "string"
+                    },
+                    "cf-space-id" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-request-id" : {
+                      "type" : "string"
+                    },
+                    "content-type" : {
+                      "type" : "string"
+                    },
+                    "date" : {
+                      "type" : "string"
+                    },
+                    "contentful-api" : {
+                      "type" : "string"
+                    },
+                    "cache-control" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-remaining" : {
+                      "type" : "string"
+                    },
+                    "x-content-type-options" : {
+                      "type" : "string"
+                    },
+                    "etag" : {
+                      "type" : "string"
+                    },
+                    "access-control-allow-methods" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-route" : {
+                      "type" : "string"
+                    },
+                    "access-control-expose-headers" : {
+                      "type" : "string"
+                    },
+                    "x-contentful-ratelimit-hour-limit" : {
+                      "type" : "string"
+                    },
+                    "content-length" : {
+                      "type" : "string"
+                    },
+                    "access-control-max-age" : {
+                      "type" : "string"
+                    },
+                    "connection" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-id" : {
+                      "type" : "string"
+                    },
+                    "cf-environment-uuid" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "body" : {
+                  "type" : "object",
+                  "properties" : {
+                    "sys" : {
+                      "type" : "object",
+                      "properties" : {
+                        "type" : {
+                          "type" : "string"
+                        }
+                      }
+                    },
+                    "total" : {
+                      "type" : "number"
+                    },
+                    "skip" : {
+                      "type" : "number"
+                    },
+                    "limit" : {
+                      "type" : "number"
+                    },
+                    "items" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "metadata" : {
+                            "type" : "object",
+                            "properties" : {
+                              "tags" : {
+                                "type" : "array",
+                                "items" : { }
+                              }
+                            }
+                          },
+                          "sys" : {
+                            "type" : "object",
+                            "properties" : {
+                              "publishedAt" : {
+                                "type" : "string"
+                              },
+                              "publishedBy" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "space" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "publishedVersion" : {
+                                "type" : "number"
+                              },
+                              "publishedCounter" : {
+                                "type" : "number"
+                              },
+                              "updatedAt" : {
+                                "type" : "string"
+                              },
+                              "firstPublishedAt" : {
+                                "type" : "string"
+                              },
+                              "updatedBy" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "environment" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "id" : {
+                                        "type" : "string"
+                                      },
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "contentType" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "version" : {
+                                "type" : "number"
+                              },
+                              "type" : {
+                                "type" : "string"
+                              },
+                              "id" : {
+                                "type" : "string"
+                              },
+                              "createdAt" : {
+                                "type" : "string"
+                              },
+                              "createdBy" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "sys" : {
+                                    "type" : "object",
+                                    "properties" : {
+                                      "type" : {
+                                        "type" : "string"
+                                      },
+                                      "linkType" : {
+                                        "type" : "string"
+                                      },
+                                      "id" : {
+                                        "type" : "string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "fields" : {
+                            "type" : "object",
+                            "properties" : {
+                              "friendlyName" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "en-US" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "systemName" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "en-US" : {
+                                    "type" : "string"
+                                  }
+                                }
+                              },
+                              "objects" : {
+                                "type" : "object",
+                                "properties" : {
+                                  "en-US" : {
+                                    "type" : "array",
+                                    "items" : {
+                                      "type" : "object",
+                                      "properties" : {
+                                        "sys" : {
+                                          "type" : "object",
+                                          "properties" : {
+                                            "type" : {
+                                              "type" : "string"
+                                            },
+                                            "linkType" : {
+                                              "type" : "string"
+                                            },
+                                            "id" : {
+                                              "type" : "string"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "required" : [ "sys" ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required" : [ "metadata", "sys", "fields" ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "error_handling" : { },
+        "authentication" : {
+          "group" : "b20b1bd6-7e35-4b76-b5fa-a8e9400f02d0",
+          "title" : "Automation Testing Content Management Auth",
+          "service_icon" : {
+            "icon_type" : "url",
+            "value" : "//s3.amazonaws.com/images.tray.io/artisan/icons/dbecdb13-667b-4411-aacd-ff8912e72b68.png"
+          },
+          "service_id" : "05b2df0f-88ad-44b5-9767-fc318ec207d1",
+          "auth_app_id" : "03f38e6a-f1b0-4f23-b834-7495df894531",
+          "scopes" : [ ]
+        },
+        "properties" : {
+          "queries" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "content_type"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "sourceSystem"
+                }
+              }
+            } ]
+          },
+          "headers" : {
+            "type" : "array",
+            "value" : [ {
+              "type" : "object",
+              "value" : {
+                "key" : {
+                  "type" : "string",
+                  "value" : "Authorization"
+                },
+                "value" : {
+                  "type" : "string",
+                  "value" : "Bearer {$.auth.auth_token}"
+                }
+              }
+            } ]
+          },
+          "auth" : {
+            "type" : "object",
+            "value" : {
+              "none" : {
+                "type" : "null",
+                "value" : null
+              }
+            }
+          },
+          "follow_redirect" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "parse_response" : {
+            "type" : "string",
+            "value" : "true"
+          },
+          "follow_keep_method" : {
+            "type" : "boolean",
+            "value" : false
+          },
+          "url" : {
+            "type" : "string",
+            "value" : "https://api.contentful.com/spaces/{$.auth.space_id}/environments/{$.auth.environment_id}/entries"
+          },
+          "reject_unauthorized" : {
+            "type" : "boolean",
+            "value" : true
+          },
+          "status_code" : {
+            "type" : "object",
+            "value" : {
+              "range" : {
+                "type" : "object",
+                "value" : {
+                  "from" : {
+                    "type" : "integer",
+                    "value" : 200
+                  },
+                  "to" : {
+                    "type" : "integer",
+                    "value" : 299
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "list-helpers-8" : {
+        "title" : "100 batches",
+        "connector" : {
+          "name" : "list-helpers",
+          "version" : "1.9"
+        },
+        "operation" : "chunk",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "list" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.http-client-1.response.body.items"
+          },
+          "size" : {
+            "type" : "number",
+            "value" : 100
+          }
+        }
+      },
+      "loop-4" : {
+        "title" : "Build each system's JSON",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_array",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "value" : {
+              "type" : [ "string", "boolean", "null", "object", "number", "array" ],
+              "title" : "Item"
+            },
+            "count" : {
+              "type" : "number"
+            },
+            "index" : {
+              "type" : "number"
+            },
+            "is_first" : {
+              "type" : "boolean"
+            },
+            "is_last" : {
+              "type" : "boolean"
+            },
+            "branch_name" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.loop-3.value"
+          }
+        }
+      },
+      "storage-1" : {
+        "title" : "Get systems data",
+        "connector" : {
+          "name" : "storage",
+          "version" : "1.4"
+        },
+        "operation" : "get",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "scope" : {
+            "type" : "string",
+            "value" : "Current Run"
+          },
+          "key" : {
+            "type" : "string",
+            "value" : "systems"
+          },
+          "default_value" : {
+            "type" : "null",
+            "value" : null
+          }
+        }
+      },
+      "trigger" : {
+        "title" : "Manual Trigger",
+        "connector" : {
+          "name" : "noop",
+          "version" : "1.0"
+        },
+        "operation" : "trigger",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      }
+    },
+    "dependencies" : [ {
+      "id" : "4f57612d-a77e-4bfe-a785-a599445c29a4",
+      "name" : "[Property Mapping] Build - Get system JSON utility 1.0"
+    } ]
+  } ]
+}
