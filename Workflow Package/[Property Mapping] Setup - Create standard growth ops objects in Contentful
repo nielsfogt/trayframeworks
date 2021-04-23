@@ -1,0 +1,275 @@
+{
+  "export_type" : "workflow",
+  "projects" : [ ],
+  "tray_export_version" : 3,
+  "workflows" : [ {
+    "id" : "c9a01a7b-172f-4481-a046-82c7c3cb092e",
+    "created" : "2021-03-02T16:34:38.043Z",
+    "workspace_id" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "creator" : "dec5bad5-50bb-4558-a70b-c45b28bec87c",
+    "version" : {
+      "id" : "adce0875-64bc-44a6-9285-de03e7d31d5b",
+      "created" : "2021-04-10T16:40:01.808Z"
+    },
+    "title" : "[Property Mapping] Setup - Create standard growth ops objects in Contentful",
+    "enabled" : true,
+    "tags" : [ ],
+    "settings" : {
+      "config" : { },
+      "input_schema" : { },
+      "output_schema" : { }
+    },
+    "steps_structure" : [ {
+      "name" : "trigger",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "script-1",
+      "type" : "normal",
+      "content" : { }
+    }, {
+      "name" : "loop-1",
+      "type" : "loop",
+      "content" : {
+        "_loop" : [ {
+          "name" : "text-helpers-1",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "call-workflow-1",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "terminate-1",
+          "type" : "normal",
+          "content" : { }
+        }, {
+          "name" : "call-workflow-2",
+          "type" : "normal",
+          "content" : { }
+        } ]
+      }
+    } ],
+    "steps" : {
+      "script-1" : {
+        "title" : "Return canonical objects",
+        "connector" : {
+          "name" : "script",
+          "version" : "3.0"
+        },
+        "operation" : "execute",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "variables" : {
+            "type" : "array",
+            "value" : [ ]
+          },
+          "script" : {
+            "type" : "string",
+            "value" : "// You can reference the input variables using input.NAME\n// Parsed JSON files could be referenced as fileInput\nexports.step = function(input, fileInput) {\n\treturn {\n    \"owner\": {\n      \"name\": \"Niels Fogt\",\n      \"first_name\": \"Niels\",\n      \"last_name\": \"Fogt\",\n      \"email\": \"revops@tray.io\",\n      \"user_team\": null,\n      \"active\": true,\n      \"id\": \"0054H00000672GaQAI\",\n      \"role_id\": \"00E58000000JZ6TEAW\",\n      \"profile_id\": \"00e58000000v5zzAAA\",\n      \"outreach_id\": 123,\n      \"intercom_id\": \"http\",\n      \"booking_link\": \"http\"\n    },\n    \"person\": {\n      \"first_name\": \"Geoffrey\",\n      \"last_name\": \"McCaleb\",\n      \"name\": \"stirng\",\n      \"email\": \"geoffrey@mccaleb.me\",\n      \"title\": null,\n      \"seniority_hierarchy\": null,\n      \"role\": null,\n      \"department_group\": null,\n      \"country\": null,\n      \"domain\": \"string\",\n      \"lead_status\": \"strng\",\n      \"scores\": {\n        \"fit\": null,\n        \"control_group\": false,\n        \"quadrant\": null,\n        \"behavior\": null\n      },\n      \"form_phone\": null,\n      \"all_phone_numbers\": null,\n      \"zoominfo_person_phone\": \"555\",\n      \"leadgenius_person_phone\": \"555\",\n      \"clearbit_person_phone\": null,\n      \"linkedin\": \"http\",\n      \"lead_date\": \"2021-03-02T16:31:16.000+0000\",\n      \"mql_date\": null,\n      \"mql_date_2\": null,\n      \"sent_to_manual_enrichment_date\": null,\n      \"type\": \"Lead\",\n      \"id\": \"00Q4H00000lZFTxUAO\",\n      \"outreach_id\": null,\n      \"intercom_id\": null,\n      \"intercom_role\": null\n    },\n    \"attribution\": {\n      \"campaign_id\": \"7014H000000Z20yQAC\",\n      \"status\": true,\n      \"munchkin_id\": \"id:702-NTK-721&token:_mch-tray.io-1614702499137-75778\",\n      \"offer_type\": \"Demo - Recorded\",\n      \"utm_campaign\": \"stripe-directory\",\n      \"utm_medium\": \"stripe\",\n      \"utm_source\": \"partner\",\n      \"utm_term\": \"partner\",\n      \"referrer\": \"https://stripe.com/\",\n      \"ga_id\": \"995745808.1614702498\",\n      \"anonymousId\": \"da38f9c5-e84b-4213-b404-28c19015bb71\",\n      \"intercomId\": \"64a18aec-762d-4372-b2fe-02cbecfa8ad7\",\n      \"formId\": \"1416\",\n      \"gclid\": 123,\n      \"gclid_intercom_ids\": 123,\n      \"clearbit_form_status\": \"first_name,last_name\"\n    },\n    \"company\": {\n      \"name\": \"Surkus\",\n      \"employees\": null,\n      \"domain\": null,\n      \"sales_segment\": \"Unknown\",\n      \"industry\": null,\n      \"city\": null,\n      \"state\": null,\n      \"country\": null,\n      \"zip_code\": null,\n      \"company_phone\": null,\n      \"clearbit_company_phoneNumbers\": null,\n      \"leadgenius_company_phone\": null,\n      \"zoominfo_company_phone\": null,\n      \"industry_score\": 0,\n      \"type\": null\n    }\n  }\n};"
+          },
+          "file_output" : {
+            "type" : "boolean",
+            "value" : false
+          }
+        }
+      },
+      "text-helpers-1" : {
+        "title" : "Capitalize object name",
+        "description" : "for friendly name",
+        "connector" : {
+          "name" : "text-helpers",
+          "version" : "1.15"
+        },
+        "operation" : "sentence_case",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "text" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.loop-1.key"
+          }
+        }
+      },
+      "call-workflow-2" : {
+        "title" : "Build sys/obj/props",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "8ee960e6-026a-48b6-8fd6-4305c7b6a107"
+          },
+          "trigger_input" : {
+            "type" : "object",
+            "value" : {
+              "system_create" : {
+                "type" : "boolean",
+                "value" : true
+              },
+              "object_create" : {
+                "type" : "boolean",
+                "value" : true
+              },
+              "System" : {
+                "type" : "string",
+                "value" : "Growth Ops"
+              },
+              "object" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.text-helpers-1.result"
+              },
+              "properties" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.call-workflow-1.response"
+              }
+            }
+          }
+        }
+      },
+      "call-workflow-1" : {
+        "title" : "Build props array for setup",
+        "connector" : {
+          "name" : "call-workflow",
+          "version" : "2.0"
+        },
+        "operation" : "fire_and_wait_for_response",
+        "output_schema" : {
+          "$schema" : "http://json-schema.org/draft-04/schema#",
+          "type" : "object",
+          "properties" : {
+            "#workspace_id_hash" : {
+              "type" : "string"
+            },
+            "#workflow_uuid" : {
+              "type" : "string"
+            },
+            "#username_hash" : {
+              "type" : "string"
+            },
+            "#workflow_title" : {
+              "type" : "string"
+            },
+            "#execution_uuid" : {
+              "type" : "string"
+            },
+            "response" : {
+              "type" : "array",
+              "items" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string"
+                  }
+                },
+                "required" : [ "name" ]
+              }
+            },
+            "#execution_start_time" : {
+              "type" : "string"
+            },
+            "#execution_log_url" : {
+              "type" : "string"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "workflow_id" : {
+            "type" : "string",
+            "value" : "a6ad95a4-d4d9-4761-8fd6-f31737821e50"
+          },
+          "trigger_input" : {
+            "type" : "object",
+            "value" : {
+              "sample" : {
+                "type" : "jsonpath",
+                "value" : "$.steps.loop-1.value"
+              }
+            }
+          }
+        }
+      },
+      "loop-1" : {
+        "title" : "Loop",
+        "connector" : {
+          "name" : "loop",
+          "version" : "1.1"
+        },
+        "operation" : "loop_object",
+        "output_schema" : {
+          "type" : "object",
+          "$schema" : "http://json-schema.org/draft-03/schema",
+          "id" : "http://jsonschema.net",
+          "required" : true,
+          "additionalProperties" : false,
+          "properties" : {
+            "key" : {
+              "type" : "string",
+              "id" : "http://jsonschema.net/key"
+            },
+            "value" : {
+              "type" : [ "string", "number", "object", "array", "boolean", "null" ],
+              "description" : "The script result returned from the function",
+              "title" : "Result"
+            },
+            "is_first" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_first"
+            },
+            "is_last" : {
+              "type" : "boolean",
+              "id" : "http://jsonschema.net/is_last"
+            }
+          }
+        },
+        "error_handling" : { },
+        "properties" : {
+          "array" : {
+            "type" : "array",
+            "value" : [ ]
+          },
+          "object" : {
+            "type" : "jsonpath",
+            "value" : "$.steps.script-1.result"
+          }
+        }
+      },
+      "terminate-1" : {
+        "title" : "Terminate",
+        "connector" : {
+          "name" : "terminate",
+          "version" : "1.0"
+        },
+        "operation" : "terminate_run",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      },
+      "trigger" : {
+        "title" : "Manual Trigger",
+        "connector" : {
+          "name" : "noop",
+          "version" : "1.0"
+        },
+        "operation" : "trigger",
+        "output_schema" : { },
+        "error_handling" : { },
+        "properties" : { }
+      }
+    },
+    "dependencies" : [ {
+      "id" : "8ee960e6-026a-48b6-8fd6-4305c7b6a107",
+      "name" : "[Property Mapping] CMS Setup - Add a source system object & properties in Contentful 1.0"
+    }, {
+      "id" : "a6ad95a4-d4d9-4761-8fd6-f31737821e50",
+      "name" : "[Property Mapping] Setup - Build Contentful mappings collection from sample object or array"
+    } ]
+  } ]
+}
